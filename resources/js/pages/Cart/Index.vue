@@ -85,10 +85,10 @@ const handleWhatsAppCheckout = () => {
                             <div 
                                 v-for="item in cartItems" 
                                 :key="item.id" 
-                                class="flex gap-4 sm:gap-6 bg-white p-4 sm:p-5 rounded-2xl shadow-xs border border-[#DAB6C4]/20 items-center"
+                                class="flex gap-4 sm:gap-6 bg-white p-3.5 sm:p-5 rounded-2xl shadow-xs border border-[#DAB6C4]/20 items-start sm:items-center"
                             >
                                 <!-- Image -->
-                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#F7F5F8] shrink-0 border border-[#DAB6C4]/15">
+                                <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#F7F5F8] shrink-0 border border-[#DAB6C4]/15">
                                     <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
                                 </div>
                                 
@@ -96,8 +96,12 @@ const handleWhatsAppCheckout = () => {
                                 <div class="flex flex-1 flex-col justify-between h-full min-w-0">
                                     <div class="flex justify-between items-start gap-4">
                                         <div class="min-w-0 pr-2">
-                                            <span class="text-xs font-bold text-[#A388A9] uppercase tracking-wider">{{ item.category }}</span>
-                                            <h3 class="text-base sm:text-lg font-medium text-[#2C2C2C] mt-0.5 truncate">{{ item.name }}</h3>
+                                            <span class="text-[10px] sm:text-xs font-bold text-[#A388A9] uppercase tracking-wider">{{ item.category }}</span>
+                                            <h3 class="text-sm sm:text-lg font-medium text-[#2C2C2C] mt-0.5 line-clamp-2 sm:truncate">{{ item.name }}</h3>
+                                            <!-- Mobile Price -->
+                                            <div class="text-base font-bold text-[#8C6A5D] mt-1 sm:hidden">
+                                                {{ formatPrice(item.price * item.quantity) }}
+                                            </div>
                                         </div>
                                         
                                         <!-- Remove Action (Desktop position) -->
@@ -105,29 +109,30 @@ const handleWhatsAppCheckout = () => {
                                             @click="removeItem(item.id)"
                                             class="hidden sm:flex w-9 h-9 items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
                                             title="Eliminar producto"
+                                            aria-label="Eliminar producto"
                                         >
                                             <FontAwesomeIcon :icon="faTrash" />
                                         </button>
                                     </div>
 
-                                    <div class="flex items-end justify-between mt-3 sm:mt-0">
+                                    <div class="flex items-center justify-between mt-3 sm:mt-0">
                                         <!-- Quantity Controls -->
                                         <div class="flex items-center bg-[#F7F5F8] rounded-full p-1 border border-[#DAB6C4]/30">
                                             <button 
                                                 @click="decreaseQuantity(item)"
-                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                class="w-11 h-11 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
                                                 :class="{ 'opacity-50 cursor-not-allowed': item.quantity <= 1 }"
                                                 :disabled="item.quantity <= 1"
                                                 aria-label="Disminuir cantidad"
                                             >
                                                 <FontAwesomeIcon :icon="faMinus" class="text-xs" />
                                             </button>
-                                            <span class="w-8 text-center font-semibold text-sm text-[#2C2C2C]">
+                                            <span class="w-10 sm:w-8 text-center font-semibold text-sm text-[#2C2C2C]">
                                                 {{ item.quantity }}
                                             </span>
                                             <button 
                                                 @click="increaseQuantity(item)"
-                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                class="w-11 h-11 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
                                                 aria-label="Aumentar cantidad"
                                             >
                                                 <FontAwesomeIcon :icon="faPlus" class="text-xs" />
@@ -136,8 +141,8 @@ const handleWhatsAppCheckout = () => {
                                         
                                         <div class="flex items-center gap-4">
                                             <!-- Price -->
-                                            <div class="text-right">
-                                                <div class="text-base sm:text-lg font-bold text-[#8C6A5D]">{{ formatPrice(item.price * item.quantity) }}</div>
+                                            <div class="hidden sm:block text-right">
+                                                <div class="text-lg font-bold text-[#8C6A5D]">{{ formatPrice(item.price * item.quantity) }}</div>
                                                 <div v-if="item.quantity > 1" class="text-xs text-[#2C2C2C]/50 mt-0.5">
                                                     {{ formatPrice(item.price) }} c/u
                                                 </div>
@@ -146,8 +151,9 @@ const handleWhatsAppCheckout = () => {
                                             <!-- Remove Action (Mobile position) -->
                                             <button 
                                                 @click="removeItem(item.id)"
-                                                class="sm:hidden w-8 h-8 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                                                class="sm:hidden w-11 h-11 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
                                                 title="Eliminar producto"
+                                                aria-label="Eliminar producto"
                                             >
                                                 <FontAwesomeIcon :icon="faTrash" class="text-sm" />
                                             </button>

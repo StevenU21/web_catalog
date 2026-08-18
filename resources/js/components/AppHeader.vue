@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import CartDropdown from './CartDropdown.vue';
+import CartBottomSheet from './CartBottomSheet.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
-    faBagShopping, 
     faUser, 
-    faBars, 
-    faXmark,
     faSpa,
     faBrush,
     faSprayCanSparkles 
@@ -16,8 +13,6 @@ import {
 defineProps<{
     cartCount?: number;
 }>();
-
-const isMobileMenuOpen = ref(false);
 </script>
 
 <template>
@@ -47,46 +42,21 @@ const isMobileMenuOpen = ref(false);
                 </Link>
             </nav>
 
-            <!-- Actions & Mobile Toggle -->
+            <!-- Actions -->
             <div class="flex items-center gap-3 sm:gap-5">
                 <Link href="#" class="hidden sm:inline-flex text-sm font-medium text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors items-center gap-2 group">
                     <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors" />
                     <span>Iniciar Sesión</span>
                 </Link>
-                <CartDropdown :cart-count="cartCount" />
-
-                <!-- Mobile Hamburger Button -->
-                <button 
-                    type="button"
-                    @click="isMobileMenuOpen = !isMobileMenuOpen"
-                    class="md:hidden w-9 h-9 flex items-center justify-center text-[#8C6A5D] hover:bg-[#DAB6C4]/20 rounded-sm transition-colors cursor-pointer"
-                    aria-label="Abrir menú"
-                >
-                    <FontAwesomeIcon :icon="isMobileMenuOpen ? faXmark : faBars" class="text-base" />
-                </button>
+                <!-- Desktop Cart -->
+                <div class="hidden sm:block">
+                    <CartDropdown :cart-count="cartCount" />
+                </div>
+                <!-- Mobile Cart -->
+                <div class="sm:hidden">
+                    <CartBottomSheet :cart-count="cartCount" />
+                </div>
             </div>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div v-if="isMobileMenuOpen" class="md:hidden border-t border-[#DAB6C4]/30 bg-[#F7F5F8] px-6 py-4 space-y-3">
-            <nav class="flex flex-col space-y-2 text-sm font-medium">
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
-                    <FontAwesomeIcon :icon="faSpa" class="text-xs text-[#A388A9]" />
-                    <span>Skincare</span>
-                </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
-                    <FontAwesomeIcon :icon="faBrush" class="text-xs text-[#A388A9]" />
-                    <span>Maquillaje</span>
-                </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
-                    <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xs text-[#A388A9]" />
-                    <span>Perfumería</span>
-                </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors flex items-center gap-2.5">
-                    <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D]" />
-                    <span>Iniciar Sesión</span>
-                </Link>
-            </nav>
         </div>
     </header>
 </template>

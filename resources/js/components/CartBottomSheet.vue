@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBagShopping, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,6 @@ defineProps<{
 }>();
 
 const isOpen = ref(false);
-const dropdownRef = ref<HTMLElement | null>(null);
 
 // Mock data for design
 const mockCartItems = [
@@ -29,65 +28,68 @@ const mockCartItems = [
     }
 ];
 
-const toggleDropdown = () => {
+const toggleBottomSheet = () => {
     isOpen.value = !isOpen.value;
 };
 
-const closeDropdown = () => {
+const closeBottomSheet = () => {
     isOpen.value = false;
 };
-
-// Close dropdown when clicking outside
-const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
-        closeDropdown();
-    }
-};
-
-onMounted(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-});
-
-onUnmounted(() => {
-    document.removeEventListener('mousedown', handleClickOutside);
-});
 </script>
 
 <template>
-    <div class="relative inline-block text-left" ref="dropdownRef">
-        <!-- Cart Toggle Button (Desktop Header) -->
+    <div class="relative">
+        <!-- Cart Toggle Button (Mobile Header) -->
         <button 
             type="button"
-            @click="toggleDropdown"
-            class="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#A388A9] text-white text-xs sm:text-sm font-medium hover:bg-[#8C6A5D] transition-colors shadow-xs rounded-full cursor-pointer inline-flex items-center gap-2 sm:gap-2.5 focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden min-h-[44px]"
+            @click="toggleBottomSheet"
+            class="px-3.5 py-2 bg-[#A388A9] text-white text-xs font-medium hover:bg-[#8C6A5D] transition-colors shadow-xs rounded-full cursor-pointer inline-flex items-center gap-2 focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden min-h-[44px]"
             :aria-expanded="isOpen"
         >
             <FontAwesomeIcon :icon="faBagShopping" />
-            <span class="hidden xs:inline">Carrito</span>
             <span class="bg-white/20 px-1.5 py-0.5 rounded-full text-xs font-semibold">
                 {{ cartCount ?? 0 }}
             </span>
         </button>
 
-        <!-- Dropdown Menu -->
-        <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-from-class="opacity-0 translate-y-2 scale-95"
-            enter-to-class="opacity-100 translate-y-0 scale-100"
-            leave-active-class="transition ease-in duration-150"
-            leave-from-class="opacity-100 translate-y-0 scale-100"
-            leave-to-class="opacity-0 translate-y-2 scale-95"
-        >
-            <div 
-                v-if="isOpen" 
-                class="absolute right-0 mt-3 w-96 bg-white rounded-2xl shadow-xl border border-[#DAB6C4]/30 z-50 overflow-hidden flex flex-col"
+        <!-- Teleport to body to escape header's backdrop-filter stacking context -->
+        <Teleport to="body">
+            <!-- Mobile Backdrop Overlay -->
+            <transition
+                enter-active-class="transition-opacity ease-linear duration-300"
+                enter-from-class="opacity-0"
+                enter-to-class="opacity-100"
+                leave-active-class="transition-opacity ease-linear duration-200"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
             >
+                <div 
+                    v-if="isOpen" 
+                    class="fixed inset-0 bg-black/40 z-[50]" 
+                    @click.stop="closeBottomSheet" 
+                    aria-hidden="true"
+                ></div>
+            </transition>
+
+            <!-- Bottom Sheet Menu -->
+            <transition
+                enter-active-class="transition ease-out duration-300"
+                enter-from-class="opacity-0 translate-y-full"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition ease-in duration-200"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 translate-y-full"
+            >
+                <div 
+                    v-if="isOpen" 
+                    class="fixed bottom-0 left-0 right-0 w-full bg-white rounded-t-3xl shadow-2xl border-t border-[#DAB6C4]/30 z-[60] overflow-hidden flex flex-col max-h-[85vh]"
+                >
                 <!-- Header -->
                 <div class="px-5 py-4 border-b border-[#F7F5F8] flex items-center justify-between bg-[#F7F5F8]/50">
                     <h3 class="text-[#8C6A5D] font-serif font-semibold text-lg">Tu Carrito</h3>
                     <button 
-                        @click="closeDropdown"
-                        class="text-[#2C2C2C]/50 hover:text-[#2C2C2C] transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#DAB6C4]/20"
+                        @click="closeBottomSheet"
+                        class="text-[#2C2C2C]/50 hover:text-[#2C2C2C] transition-colors w-11 h-11 flex items-center justify-center rounded-full hover:bg-[#DAB6C4]/20"
                         aria-label="Cerrar carrito"
                     >
                         <FontAwesomeIcon :icon="faXmark" />
@@ -95,7 +97,7 @@ onUnmounted(() => {
                 </div>
 
                 <!-- Cart Items (Mock) -->
-                <div class="overflow-y-auto px-5 py-3 space-y-4 max-h-80">
+                <div class="overflow-y-auto px-5 py-3 space-y-4 flex-1">
                     <template v-if="cartCount && cartCount > 0">
                         <div v-for="item in mockCartItems" :key="item.id" class="flex gap-4 items-center group">
                             <!-- Image -->
@@ -112,7 +114,7 @@ onUnmounted(() => {
 
                             <!-- Remove Action -->
                             <button 
-                                class="w-8 h-8 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                                class="w-11 h-11 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 transition-colors"
                                 aria-label="Eliminar item"
                             >
                                 <FontAwesomeIcon :icon="faTrash" class="text-sm" />
@@ -138,7 +140,7 @@ onUnmounted(() => {
                     
                     <Link 
                         href="/cart"
-                        @click="closeDropdown"
+                        @click="closeBottomSheet"
                         class="w-full flex items-center justify-center py-3 bg-[#A388A9] text-white font-medium rounded-xl hover:bg-[#8C6A5D] transition-colors gap-2 min-h-[44px]"
                     >
                         <span>Ver Vista Completa</span>
@@ -146,5 +148,6 @@ onUnmounted(() => {
                 </div>
             </div>
         </transition>
+        </Teleport>
     </div>
 </template>

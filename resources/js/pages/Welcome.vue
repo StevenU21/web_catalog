@@ -75,16 +75,16 @@ function handleAddToCart(product: Product) {
                 <!-- Left Column: Content -->
                 <div class="flex flex-col items-start justify-center text-left">
                     <!-- Badge -->
-                    <div class="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-full bg-[#F3EBED] text-[#8C6A5D] text-[10px] sm:text-xs font-bold tracking-wider uppercase mb-4 sm:mb-6">
-                        <span>Asistente de belleza inteligente</span>
+                    <div class="inline-flex items-center space-x-2 px-3 sm:px-4 py-1 rounded-full bg-[#F3EBED] text-[#8C6A5D]/90 text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-4 sm:mb-6">
+                        <span>Catalogo Web Inteligente</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] text-[#8C6A5D] font-serif font-semibold mb-4 sm:mb-6 leading-tight max-w-xl">
-                        Descubre tu look ideal con recomendaciones personalizadas
+                        Tienda en Linea de cosmética y cuidado personal de alta fidelidad
                     </h1>
                     
                     <p class="text-base sm:text-lg text-[#2C2C2C]/80 mb-6 sm:mb-8 max-w-lg font-sans leading-relaxed">
-                        Descubre productos para cuidar tu piel y expresar tu estilo, con recomendaciones de IA pensadas para ti
+                        Eleva tu rutina diaria con productos rigurosamente seleccionados para la vitalidad de tu piel.
                     </p>
 
                     <!-- AI Natural Language Search -->
