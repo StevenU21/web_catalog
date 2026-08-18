@@ -61,87 +61,97 @@ const handleWhatsAppCheckout = () => {
     <Head title="Tu Carrito - Jolismar Store" />
 
     <AppLayout :cart-count="cartItems.length">
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
             
             <!-- Breadcrumb / Header Row -->
-            <div class="flex items-center justify-between mb-4">
-                <Link href="/" class="inline-flex items-center gap-2 text-[#2C2C2C]/70 hover:text-[#8C6A5D] transition-colors font-medium text-xs sm:text-sm">
+            <div class="flex items-center justify-between mb-5">
+                <Link href="/" class="inline-flex items-center gap-2 text-[#2C2C2C]/70 hover:text-[#8C6A5D] transition-colors font-medium text-sm">
                     <FontAwesomeIcon :icon="faArrowLeft" />
                     <span>Continuar Comprando</span>
                 </Link>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-5 lg:gap-6 items-start">
+            <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
                 
                 <!-- Cart Items Section -->
                 <div class="flex-1 w-full">
-                    <div class="flex items-center justify-between mb-3.5">
-                        <h1 class="text-xl sm:text-2xl text-[#8C6A5D] font-serif font-semibold">Tu Carrito</h1>
-                        <span class="text-xs text-[#2C2C2C]/60 font-medium">{{ cartItems.length }} {{ cartItems.length === 1 ? 'producto' : 'productos' }}</span>
+                    <div class="flex items-center justify-between mb-4">
+                        <h1 class="text-2xl sm:text-3xl text-[#8C6A5D] font-serif font-semibold">Tu Carrito</h1>
+                        <span class="text-sm text-[#2C2C2C]/60 font-medium">{{ cartItems.length }} {{ cartItems.length === 1 ? 'producto' : 'productos' }}</span>
                     </div>
 
                     <template v-if="cartItems.length > 0">
-                        <div class="space-y-3">
+                        <div class="space-y-4">
                             <div 
                                 v-for="item in cartItems" 
                                 :key="item.id" 
-                                class="flex gap-3.5 sm:gap-4 bg-white p-3 sm:p-4 rounded-xl shadow-2xs border border-[#DAB6C4]/20 items-center"
+                                class="flex gap-4 sm:gap-6 bg-white p-4 sm:p-5 rounded-2xl shadow-xs border border-[#DAB6C4]/20 items-center"
                             >
                                 <!-- Image -->
-                                <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-[#F7F5F8] shrink-0 border border-[#DAB6C4]/15">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-[#F7F5F8] shrink-0 border border-[#DAB6C4]/15">
                                     <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
                                 </div>
                                 
                                 <!-- Details -->
-                                <div class="flex flex-1 flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 min-w-0">
-                                    <div class="min-w-0">
-                                        <span class="text-[10px] font-bold text-[#A388A9] uppercase tracking-wider">{{ item.category }}</span>
-                                        <h3 class="text-sm sm:text-base font-medium text-[#2C2C2C] truncate">{{ item.name }}</h3>
-                                        <div class="text-xs text-[#2C2C2C]/50 mt-0.5 sm:hidden">
-                                            {{ formatPrice(item.price) }} c/u
+                                <div class="flex flex-1 flex-col justify-between h-full min-w-0">
+                                    <div class="flex justify-between items-start gap-4">
+                                        <div class="min-w-0 pr-2">
+                                            <span class="text-xs font-bold text-[#A388A9] uppercase tracking-wider">{{ item.category }}</span>
+                                            <h3 class="text-base sm:text-lg font-medium text-[#2C2C2C] mt-0.5 truncate">{{ item.name }}</h3>
                                         </div>
+                                        
+                                        <!-- Remove Action (Desktop position) -->
+                                        <button 
+                                            @click="removeItem(item.id)"
+                                            class="hidden sm:flex w-9 h-9 items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                                            title="Eliminar producto"
+                                        >
+                                            <FontAwesomeIcon :icon="faTrash" />
+                                        </button>
                                     </div>
 
-                                    <div class="flex items-center justify-between sm:justify-end gap-4 sm:gap-6 shrink-0">
+                                    <div class="flex items-end justify-between mt-3 sm:mt-0">
                                         <!-- Quantity Controls -->
-                                        <div class="flex items-center bg-[#F7F5F8] rounded-full p-0.5 border border-[#DAB6C4]/30">
+                                        <div class="flex items-center bg-[#F7F5F8] rounded-full p-1 border border-[#DAB6C4]/30">
                                             <button 
                                                 @click="decreaseQuantity(item)"
-                                                class="w-7 h-7 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
-                                                :class="{ 'opacity-40 cursor-not-allowed': item.quantity <= 1 }"
+                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                :class="{ 'opacity-50 cursor-not-allowed': item.quantity <= 1 }"
                                                 :disabled="item.quantity <= 1"
                                                 aria-label="Disminuir cantidad"
                                             >
-                                                <FontAwesomeIcon :icon="faMinus" class="text-[10px]" />
+                                                <FontAwesomeIcon :icon="faMinus" class="text-xs" />
                                             </button>
-                                            <span class="w-7 text-center font-semibold text-xs text-[#2C2C2C]">
+                                            <span class="w-8 text-center font-semibold text-sm text-[#2C2C2C]">
                                                 {{ item.quantity }}
                                             </span>
                                             <button 
                                                 @click="increaseQuantity(item)"
-                                                class="w-7 h-7 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                class="w-8 h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
                                                 aria-label="Aumentar cantidad"
                                             >
-                                                <FontAwesomeIcon :icon="faPlus" class="text-[10px]" />
+                                                <FontAwesomeIcon :icon="faPlus" class="text-xs" />
                                             </button>
                                         </div>
                                         
-                                        <!-- Price -->
-                                        <div class="text-right min-w-[90px]">
-                                            <div class="text-sm sm:text-base font-bold text-[#8C6A5D]">{{ formatPrice(item.price * item.quantity) }}</div>
-                                            <div v-if="item.quantity > 1" class="hidden sm:block text-[11px] text-[#2C2C2C]/50">
-                                                {{ formatPrice(item.price) }} c/u
+                                        <div class="flex items-center gap-4">
+                                            <!-- Price -->
+                                            <div class="text-right">
+                                                <div class="text-base sm:text-lg font-bold text-[#8C6A5D]">{{ formatPrice(item.price * item.quantity) }}</div>
+                                                <div v-if="item.quantity > 1" class="text-xs text-[#2C2C2C]/50 mt-0.5">
+                                                    {{ formatPrice(item.price) }} c/u
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Remove Action -->
-                                        <button 
-                                            @click="removeItem(item.id)"
-                                            class="w-8 h-8 flex items-center justify-center text-[#2C2C2C]/35 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
-                                            title="Eliminar producto"
-                                        >
-                                            <FontAwesomeIcon :icon="faTrash" class="text-xs" />
-                                        </button>
+                                            <!-- Remove Action (Mobile position) -->
+                                            <button 
+                                                @click="removeItem(item.id)"
+                                                class="sm:hidden w-8 h-8 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                                                title="Eliminar producto"
+                                            >
+                                                <FontAwesomeIcon :icon="faTrash" class="text-sm" />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -149,15 +159,15 @@ const handleWhatsAppCheckout = () => {
                     </template>
                     
                     <template v-else>
-                        <div class="bg-white rounded-2xl p-8 text-center shadow-2xs border border-[#DAB6C4]/20 flex flex-col items-center justify-center min-h-[280px]">
-                            <div class="w-16 h-16 bg-[#F7F5F8] rounded-full flex items-center justify-center text-[#DAB6C4] mb-4">
-                                <FontAwesomeIcon :icon="faBagShopping" class="text-2xl" />
+                        <div class="bg-white rounded-3xl p-10 text-center shadow-xs border border-[#DAB6C4]/20 flex flex-col items-center justify-center min-h-[350px]">
+                            <div class="w-20 h-20 bg-[#F7F5F8] rounded-full flex items-center justify-center text-[#DAB6C4] mb-5">
+                                <FontAwesomeIcon :icon="faBagShopping" class="text-3xl" />
                             </div>
-                            <h2 class="text-xl font-serif text-[#8C6A5D] font-medium mb-2">Tu carrito está vacío</h2>
-                            <p class="text-xs sm:text-sm text-[#2C2C2C]/70 mb-5 max-w-sm mx-auto">Explora nuestro catálogo para descubrir productos ideales para tu piel y estilo.</p>
+                            <h2 class="text-2xl font-serif text-[#8C6A5D] font-medium mb-3">Tu carrito está vacío</h2>
+                            <p class="text-sm text-[#2C2C2C]/70 mb-6 max-w-sm mx-auto leading-relaxed">Explora nuestro catálogo para descubrir productos ideales para tu piel y estilo.</p>
                             <Link 
                                 href="/"
-                                class="px-6 py-2.5 bg-[#A388A9] text-white text-xs sm:text-sm font-medium rounded-full hover:bg-[#8C6A5D] transition-colors shadow-2xs inline-flex items-center gap-2"
+                                class="px-7 py-3 bg-[#A388A9] text-white text-sm font-medium rounded-full hover:bg-[#8C6A5D] transition-colors shadow-sm inline-flex items-center gap-2.5"
                             >
                                 <FontAwesomeIcon :icon="faBagShopping" />
                                 <span>Explorar Catálogo</span>
@@ -166,12 +176,12 @@ const handleWhatsAppCheckout = () => {
                     </template>
                 </div>
 
-                <!-- Order Summary Sidebar (Compact) -->
-                <div v-if="cartItems.length > 0" class="w-full lg:w-80 shrink-0">
-                    <div class="bg-white p-4 sm:p-5 rounded-2xl shadow-2xs border border-[#DAB6C4]/30 sticky top-24">
-                        <h2 class="text-base font-serif text-[#8C6A5D] font-semibold mb-3 pb-2 border-b border-[#F7F5F8]">Resumen del Pedido</h2>
+                <!-- Order Summary Sidebar (Middle Ground) -->
+                <div v-if="cartItems.length > 0" class="w-full lg:w-[22rem] shrink-0">
+                    <div class="bg-white p-5 sm:p-6 rounded-3xl shadow-sm border border-[#DAB6C4]/30 sticky top-28">
+                        <h2 class="text-lg font-serif text-[#8C6A5D] font-semibold mb-4 pb-3 border-b border-[#F7F5F8]">Resumen del Pedido</h2>
                         
-                        <div class="space-y-2 mb-3 text-xs sm:text-sm">
+                        <div class="space-y-3 mb-5 text-sm">
                             <div class="flex justify-between items-center text-[#2C2C2C]/80">
                                 <span>Subtotal</span>
                                 <span class="font-medium text-[#2C2C2C]">{{ formatPrice(subtotal) }}</span>
@@ -182,32 +192,36 @@ const handleWhatsAppCheckout = () => {
                             </div>
                         </div>
                         
-                        <div class="border-t border-[#DAB6C4]/25 pt-2.5 mb-4 flex justify-between items-baseline">
-                            <span class="text-sm font-semibold text-[#2C2C2C]">Total</span>
-                            <span class="text-xl sm:text-2xl font-bold text-[#8C6A5D]">{{ formatPrice(total) }}</span>
+                        <div class="border-t border-[#DAB6C4]/25 pt-4 mb-6 flex justify-between items-baseline">
+                            <span class="text-base font-semibold text-[#2C2C2C]">Total</span>
+                            <span class="text-2xl sm:text-3xl font-bold text-[#8C6A5D]">{{ formatPrice(total) }}</span>
                         </div>
 
                         <!-- Primary CTA -->
                         <button 
                             @click="handleWhatsAppCheckout"
-                            class="w-full py-3 px-4 bg-[#A388A9] text-white font-semibold rounded-xl hover:bg-[#8C6A5D] hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2.5 text-sm sm:text-base cursor-pointer"
+                            class="w-full py-3.5 px-5 bg-[#A388A9] text-white font-bold rounded-2xl hover:bg-[#8C6A5D] hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 text-base cursor-pointer"
                         >
-                            <FontAwesomeIcon :icon="faWhatsapp" class="text-lg" />
-                            <span>Confirmar Pedido por WhatsApp</span>
+                            <FontAwesomeIcon :icon="faWhatsapp" class="text-xl" />
+                            <span>Confirmar Pedido</span>
                         </button>
                         
-                        <p class="text-[11px] text-center text-[#2C2C2C]/60 mt-2.5 leading-tight">
-                            Te redirigiremos a WhatsApp con el detalle listo para coordinar tu entrega.
+                        <p class="text-xs text-center text-[#2C2C2C]/60 mt-3.5 leading-relaxed">
+                            Te redirigiremos a WhatsApp con los detalles de tu pedido listos para coordinar.
                         </p>
 
-                        <!-- Compact Trust Badges -->
-                        <div class="mt-4 space-y-1.5 border-t border-[#F7F5F8] pt-3 text-[11px] text-[#2C2C2C]/75">
-                            <div class="flex items-center gap-2">
-                                <FontAwesomeIcon :icon="faShieldHalved" class="text-[#A388A9] text-xs" />
+                        <!-- Trust Badges -->
+                        <div class="mt-6 space-y-2.5 border-t border-[#F7F5F8] pt-4 text-xs text-[#2C2C2C]/80">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-6 h-6 rounded-full bg-[#F3EBED] text-[#A388A9] flex items-center justify-center shrink-0">
+                                    <FontAwesomeIcon :icon="faShieldHalved" class="text-[10px]" />
+                                </div>
                                 <span>Productos 100% originales</span>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <FontAwesomeIcon :icon="faTruckFast" class="text-[#A388A9] text-xs" />
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-6 h-6 rounded-full bg-[#F3EBED] text-[#A388A9] flex items-center justify-center shrink-0">
+                                    <FontAwesomeIcon :icon="faTruckFast" class="text-[10px]" />
+                                </div>
                                 <span>Envíos seguros a toda Nicaragua</span>
                             </div>
                         </div>
