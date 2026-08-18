@@ -19,7 +19,7 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="Jolismar Store | Elegancia en cada gota">
         <meta property="og:description" content="Descubre productos para cuidar tu piel y expresar tu estilo. Catálogo oficial de Jolismar Store con recomendaciones personalizadas.">
-        <meta property="og:image" content="{{ asset('hero/02.jpg') }}">
+        <meta property="og:image" content="{{ asset('hero/02.avif') }}">
         <meta property="og:image:alt" content="Catálogo Jolismar Store">
         <meta property="og:site_name" content="Jolismar Store">
 
@@ -32,7 +32,7 @@
             "description": "Catálogo de productos originales de skincare, maquillaje y perfumería con envíos a toda Nicaragua.",
             "url": "{{ url('/') }}",
             "logo": "{{ asset('img/logo.png') }}",
-            "image": "{{ asset('hero/02.jpg') }}",
+            "image": "{{ asset('hero/02.avif') }}",
             "telephone": "+50588438783",
             "address": {
                 "@@type": "PostalAddress",

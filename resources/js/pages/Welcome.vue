@@ -87,14 +87,14 @@ function handleAddToCart(product: Product) {
                 <!-- Right Column: Images (Desktop Only) -->
                 <div class="hidden lg:grid grid-cols-2 gap-3 sm:gap-4 lg:h-[450px] xl:h-[480px] min-h-0">
                     <div class="group relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-sm transition-transform duration-500 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                        <img src="/hero/01.jpg" alt="Skincare routine" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                        <img src="/hero/01.avif" alt="Skincare routine" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                     </div>
                     <div class="grid grid-rows-2 gap-3 sm:gap-4 h-full min-h-0">
                         <div class="group relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-sm transition-transform duration-500 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                            <img src="/hero/02.jpg" alt="Makeup collection" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                            <img src="/hero/02.avif" alt="Makeup collection" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
                         <div class="group relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-sm transition-transform duration-500 hover:-translate-y-1 hover:shadow-md cursor-pointer">
-                            <img src="/hero/03.png" alt="Perfume" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                            <img src="/hero/03.avif" alt="Perfume" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
                     </div>
                 </div>
