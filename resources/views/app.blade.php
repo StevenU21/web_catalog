@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico?v={{ file_exists(public_path('favicon.ico')) ? filemtime(public_path('favicon.ico')) : 1 }}">
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v={{ file_exists(public_path('favicon.ico')) ? filemtime(public_path('favicon.ico')) : 1 }}">
 
         <!-- SEO Basics -->
         <meta name="description" content="Jolismar Store - Catálogo de productos originales de skincare, maquillaje y perfumería. Envío a toda Nicaragua desde Estelí.">
@@ -48,7 +47,6 @@
         }
         </script>
 
-        @fonts
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         <x-inertia::head>
