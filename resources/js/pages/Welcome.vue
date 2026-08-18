@@ -16,6 +16,7 @@ const products: Product[] = [
         name: 'Serum Iluminador Vitamina C',
         category: 'Skincare',
         price: 'C$ 450.00',
+        description: 'Fórmula antioxidante de alta potencia para unificar el tono y aportar luminosidad radiante.',
         image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600',
     },
     {
@@ -23,6 +24,7 @@ const products: Product[] = [
         name: 'Labial Mate Aterciopelado',
         category: 'Maquillaje',
         price: 'C$ 220.00',
+        description: 'Color intenso de larga duración con acabado mate aterciopelado y sensación ligera.',
         image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=600',
     },
     {
@@ -30,6 +32,7 @@ const products: Product[] = [
         name: 'Midnight Bloom Eau de Parfum',
         category: 'Perfumería',
         price: 'C$ 850.00',
+        description: 'Fragancia sofisticada con notas florales nocturnas, toques de vainilla y ámbar cálido.',
         image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600',
     },
 ];

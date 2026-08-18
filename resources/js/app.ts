@@ -1,4 +1,3 @@
-import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import '@fontsource-variable/inter';
@@ -8,16 +7,9 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
-    setup({ el, App, props, plugin }) {
-        if (!el) {
-            return;
-        }
-
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .component('font-awesome-icon', FontAwesomeIcon)
-            .component('FontAwesomeIcon', FontAwesomeIcon)
-            .mount(el);
+    withApp(app) {
+        app.component('font-awesome-icon', FontAwesomeIcon);
+        app.component('FontAwesomeIcon', FontAwesomeIcon);
     },
     progress: {
         color: '#A388A9',

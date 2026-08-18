@@ -2,7 +2,15 @@
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faBagShopping, faUser, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faBagShopping, 
+    faUser, 
+    faBars, 
+    faXmark,
+    faSpa,
+    faBrush,
+    faSprayCanSparkles 
+} from '@fortawesome/free-solid-svg-icons';
 
 defineProps<{
     cartCount?: number;
@@ -24,26 +32,29 @@ const isMobileMenuOpen = ref(false);
 
             <!-- Desktop Categorized Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors">
-                    Skincare
+                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                    <FontAwesomeIcon :icon="faSpa" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
+                    <span>Skincare</span>
                 </Link>
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors">
-                    Maquillaje
+                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                    <FontAwesomeIcon :icon="faBrush" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
+                    <span>Maquillaje</span>
                 </Link>
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors">
-                    Perfumería
+                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                    <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
+                    <span>Perfumería</span>
                 </Link>
             </nav>
 
             <!-- Actions & Mobile Toggle -->
             <div class="flex items-center gap-3 sm:gap-5">
-                <Link href="#" class="hidden sm:inline-flex text-sm font-medium text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors items-center gap-2">
-                    <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D]" />
+                <Link href="#" class="hidden sm:inline-flex text-sm font-medium text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors items-center gap-2 group">
+                    <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors" />
                     <span>Iniciar Sesión</span>
                 </Link>
                 <button 
                     type="button"
-                    class="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#A388A9] text-white text-xs sm:text-sm font-medium hover:bg-[#8C6A5D] transition-colors shadow-xs rounded-sm cursor-pointer inline-flex items-center gap-2 sm:gap-2.5 focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden"
+                    class="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#A388A9] text-white text-xs sm:text-sm font-medium hover:bg-[#8C6A5D] transition-colors shadow-xs rounded-full cursor-pointer inline-flex items-center gap-2 sm:gap-2.5 focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden"
                 >
                     <FontAwesomeIcon :icon="faBagShopping" />
                     <span class="hidden xs:inline">Carrito</span>
@@ -67,16 +78,19 @@ const isMobileMenuOpen = ref(false);
         <!-- Mobile Navigation Menu -->
         <div v-if="isMobileMenuOpen" class="md:hidden border-t border-[#DAB6C4]/30 bg-[#F7F5F8] px-6 py-4 space-y-3">
             <nav class="flex flex-col space-y-2 text-sm font-medium">
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20">
-                    Skincare
+                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
+                    <FontAwesomeIcon :icon="faSpa" class="text-xs text-[#A388A9]" />
+                    <span>Skincare</span>
                 </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20">
-                    Maquillaje
+                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
+                    <FontAwesomeIcon :icon="faBrush" class="text-xs text-[#A388A9]" />
+                    <span>Maquillaje</span>
                 </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20">
-                    Perfumería
+                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors border-b border-[#DAB6C4]/20 flex items-center gap-2.5">
+                    <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xs text-[#A388A9]" />
+                    <span>Perfumería</span>
                 </Link>
-                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors flex items-center gap-2">
+                <Link href="#" @click="isMobileMenuOpen = false" class="py-2 text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors flex items-center gap-2.5">
                     <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D]" />
                     <span>Iniciar Sesión</span>
                 </Link>
