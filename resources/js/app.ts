@@ -1,3 +1,5 @@
+import '@fontsource-variable/inter';
+import '@fontsource-variable/playfair-display';
 import { createInertiaApp } from '@inertiajs/vue3';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -8,3 +10,4 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
