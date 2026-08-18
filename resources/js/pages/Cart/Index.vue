@@ -120,19 +120,19 @@ const handleWhatsAppCheckout = () => {
                                         <div class="flex items-center bg-[#F7F5F8] rounded-full p-1 border border-[#DAB6C4]/30">
                                             <button 
                                                 @click="decreaseQuantity(item)"
-                                                class="w-11 h-11 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                class="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
                                                 :class="{ 'opacity-50 cursor-not-allowed': item.quantity <= 1 }"
                                                 :disabled="item.quantity <= 1"
                                                 aria-label="Disminuir cantidad"
                                             >
                                                 <FontAwesomeIcon :icon="faMinus" class="text-xs" />
                                             </button>
-                                            <span class="w-10 sm:w-8 text-center font-semibold text-sm text-[#2C2C2C]">
+                                            <span class="w-8 text-center font-semibold text-sm text-[#2C2C2C]">
                                                 {{ item.quantity }}
                                             </span>
                                             <button 
                                                 @click="increaseQuantity(item)"
-                                                class="w-11 h-11 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
+                                                class="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-[#2C2C2C] hover:bg-white transition-colors"
                                                 aria-label="Aumentar cantidad"
                                             >
                                                 <FontAwesomeIcon :icon="faPlus" class="text-xs" />
@@ -151,7 +151,7 @@ const handleWhatsAppCheckout = () => {
                                             <!-- Remove Action (Mobile position) -->
                                             <button 
                                                 @click="removeItem(item.id)"
-                                                class="sm:hidden w-11 h-11 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
+                                                class="sm:hidden w-9 h-9 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors shrink-0"
                                                 title="Eliminar producto"
                                                 aria-label="Eliminar producto"
                                             >
