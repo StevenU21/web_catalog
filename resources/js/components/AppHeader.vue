@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import CartDropdown from './CartDropdown.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
     faBagShopping, 
@@ -52,16 +53,7 @@ const isMobileMenuOpen = ref(false);
                     <FontAwesomeIcon :icon="faUser" class="text-xs text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors" />
                     <span>Iniciar Sesión</span>
                 </Link>
-                <button 
-                    type="button"
-                    class="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#A388A9] text-white text-xs sm:text-sm font-medium hover:bg-[#8C6A5D] transition-colors shadow-xs rounded-full cursor-pointer inline-flex items-center gap-2 sm:gap-2.5 focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden"
-                >
-                    <FontAwesomeIcon :icon="faBagShopping" />
-                    <span class="hidden xs:inline">Carrito</span>
-                    <span class="bg-white/20 px-1.5 py-0.5 rounded-full text-xs font-semibold">
-                        {{ cartCount ?? 0 }}
-                    </span>
-                </button>
+                <CartDropdown :cart-count="cartCount" />
 
                 <!-- Mobile Hamburger Button -->
                 <button 
