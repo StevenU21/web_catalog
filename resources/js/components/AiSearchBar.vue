@@ -43,7 +43,6 @@ const suggestions = [
     'Piel grasa con acné',
     'Serum Vitamina C',
     'Hidratante piel sensible',
-    'Perfume floral',
 ];
 </script>
 
