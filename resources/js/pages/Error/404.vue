@@ -18,24 +18,24 @@ defineProps<{ status?: number }>();
 <template>
     <Head title="Página no encontrada" />
 
-    <div class="min-h-[60vh] flex flex-col items-center justify-center px-4 py-16">
-        <div class="max-w-md w-full text-center space-y-8">
+    <div class="h-full flex flex-col items-center justify-center px-4 py-6 md:py-8">
+        <div class="max-w-md w-full text-center space-y-5">
             <div class="relative w-full flex items-center justify-center">
-                <div class="w-32 h-32 bg-[#F7F5F8] rounded-full flex items-center justify-center">
-                    <FontAwesomeIcon :icon="faGhost" class="text-5xl text-[#DAB6C4] animate-bounce" />
+                <div class="w-20 h-20 bg-white/70 shadow-2xs rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon :icon="faGhost" class="text-3xl text-[#DAB6C4] animate-bounce" />
                 </div>
             </div>
             
-            <div class="space-y-3">
-                <h1 class="text-6xl font-serif font-bold text-[#8C6A5D]">404</h1>
-                <h2 class="text-2xl font-bold text-[#2C2C2C]">Página no encontrada</h2>
-                <p class="text-gray-600 leading-relaxed">Lo sentimos, no pudimos encontrar el producto o página que estás buscando. Es posible que el enlace esté roto o haya sido eliminado.</p>
+            <div class="space-y-2">
+                <h1 class="text-5xl font-serif font-bold text-[#8C6A5D]">404</h1>
+                <h2 class="text-xl font-bold text-[#2C2C2C]">Página no encontrada</h2>
+                <p class="text-sm text-gray-600 leading-relaxed">Lo sentimos, no pudimos encontrar el producto o página que estás buscando. Es posible que el enlace esté roto o haya sido eliminado.</p>
             </div>
 
-            <div class="pt-6">
+            <div class="pt-2">
                 <Link 
                     href="/" 
-                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#A388A9] text-white font-medium rounded-xl hover:bg-[#8C6A5D] transition-colors min-h-[44px]"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#A388A9] text-white font-medium rounded-xl hover:bg-[#8C6A5D] transition-colors min-h-[44px] text-sm shadow-xs"
                 >
                     <FontAwesomeIcon :icon="faHouse" />
                     Volver al Inicio
