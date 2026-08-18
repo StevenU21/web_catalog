@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faMagnifyingGlass, faWandMagicSparkles, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const props = withDefaults(
     defineProps<{
@@ -9,7 +11,7 @@ const props = withDefaults(
     }>(),
     {
         modelValue: '',
-        placeholder: "Pregúntale a nuestra IA... ej: 'Serum hidratante para piel grasa con acné'",
+        placeholder: "¿Qué buscas hoy? Ej. Serum para manchas o piel grasa...",
         loading: false,
     }
 );
@@ -30,39 +32,61 @@ function handleInput(event: Event) {
 function handleSubmit() {
     emit('submit', inputQuery.value);
 }
+
+function applySuggestion(suggestion: string) {
+    inputQuery.value = suggestion;
+    emit('update:modelValue', suggestion);
+    emit('submit', suggestion);
+}
+
+const suggestions = [
+    'Piel grasa con acné',
+    'Serum Vitamina C',
+    'Hidratante piel sensible',
+    'Perfume floral',
+];
 </script>
 
 <template>
-    <form @submit.prevent="handleSubmit" class="w-full max-w-2xl relative group">
-        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-            <svg class="w-5 h-5 text-[#8C6A5D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-        </div>
+    <div class="w-full max-w-2xl md:max-w-3xl flex flex-col items-center gap-3">
+        <form @submit.prevent="handleSubmit" class="w-full relative group">
+            <div class="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-[#8C6A5D]">
+                <FontAwesomeIcon :icon="faMagnifyingGlass" class="w-4 h-4 text-sm" />
+            </div>
 
-        <input 
-            type="text" 
-            :value="modelValue" 
-            @input="handleInput"
-            class="block w-full pl-14 pr-36 py-4 border border-[#DAB6C4] rounded-full bg-white shadow-xs focus:ring-2 focus:ring-[#A388A9] focus:border-transparent transition-all outline-hidden text-[#2C2C2C] placeholder:text-[#2C2C2C]/50 text-base md:text-lg" 
-            :placeholder="placeholder"
-        >
-
-        <div class="absolute inset-y-0 right-2 flex items-center">
-            <button 
-                type="submit" 
-                :disabled="loading"
-                class="flex items-center gap-2 px-5 py-2.5 bg-[#A388A9] text-white rounded-full hover:bg-[#8C6A5D] disabled:opacity-50 transition-colors font-medium text-sm shadow-xs group-hover:shadow-md cursor-pointer focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden"
+            <input 
+                type="text" 
+                :value="modelValue" 
+                @input="handleInput"
+                class="block w-full pl-11 sm:pl-14 pr-32 sm:pr-40 py-3.5 sm:py-4 border border-[#DAB6C4] rounded-full bg-white shadow-xs focus:ring-2 focus:ring-[#A388A9] focus:border-transparent transition-all outline-hidden text-[#2C2C2C] placeholder:text-[#2C2C2C]/50 text-sm sm:text-base md:text-lg" 
+                :placeholder="placeholder"
             >
-                <svg v-if="!loading" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <svg v-else class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                </svg>
-                <span>Consultar IA</span>
+
+            <div class="absolute inset-y-0 right-1.5 sm:right-2 flex items-center">
+                <button 
+                    type="submit" 
+                    :disabled="loading"
+                    class="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#A388A9] text-white rounded-full hover:bg-[#8C6A5D] disabled:opacity-50 transition-colors font-medium text-xs sm:text-sm shadow-xs group-hover:shadow-md cursor-pointer focus:ring-2 focus:ring-[#A388A9] focus:outline-hidden"
+                >
+                    <FontAwesomeIcon v-if="!loading" :icon="faWandMagicSparkles" class="text-xs" />
+                    <FontAwesomeIcon v-else :icon="faSpinner" spin class="text-xs" />
+                    <span>Consultar IA</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Quick AI Suggestion Badges -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-[#2C2C2C]/70">
+            <span class="text-[#8C6A5D] font-medium hidden sm:inline">Sugerencias:</span>
+            <button
+                v-for="item in suggestions"
+                :key="item"
+                type="button"
+                @click="applySuggestion(item)"
+                class="px-3 py-1 rounded-full bg-white border border-[#DAB6C4]/50 hover:border-[#A388A9] hover:text-[#8C6A5D] hover:bg-[#F7F5F8] transition-all cursor-pointer shadow-2xs"
+            >
+                {{ item }}
             </button>
         </div>
-    </form>
+    </div>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import type { Product } from '@/types';
 
 defineProps<{
@@ -13,31 +15,34 @@ const emit = defineEmits<{
 <template>
     <div class="group cursor-pointer flex flex-col">
         <!-- Product Image Surface -->
-        <div class="relative w-full aspect-[4/5] bg-white rounded-sm mb-4 overflow-hidden shadow-xs transition-transform duration-500 group-hover:-translate-y-1 group-hover:shadow-md">
+        <div class="relative w-full aspect-[4/5] bg-white rounded-sm mb-2.5 sm:mb-4 overflow-hidden shadow-xs transition-transform duration-500 group-hover:-translate-y-1 group-hover:shadow-md">
             <img 
                 :src="product.image" 
                 :alt="product.name" 
                 loading="lazy"
                 class="object-cover w-full h-full mix-blend-multiply opacity-95 group-hover:scale-105 transition-transform duration-700 ease-in-out"
             >
-            <div class="absolute top-4 left-4 bg-[#DAB6C4] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-xs">
+            <div class="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 bg-[#DAB6C4] text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full uppercase tracking-wider shadow-xs">
                 {{ product.category }}
             </div>
         </div>
 
         <!-- Product Information & Actions -->
-        <div class="flex flex-col space-y-2 px-1">
-            <div class="flex items-center justify-between">
-                <span class="font-sans font-semibold text-lg text-[#2C2C2C]">{{ product.price }}</span>
+        <div class="flex flex-col space-y-1 sm:space-y-2 px-0.5 sm:px-1">
+            <div class="flex items-center justify-between gap-1">
+                <span class="font-sans font-semibold text-sm sm:text-base md:text-lg text-[#2C2C2C]">{{ product.price }}</span>
                 <button 
                     type="button"
                     @click.stop="emit('addToCart', product)"
-                    class="text-sm font-semibold text-[#A388A9] hover:text-[#8C6A5D] transition-colors underline underline-offset-4 cursor-pointer focus:outline-hidden"
+                    class="text-xs sm:text-sm font-semibold text-[#A388A9] hover:text-[#8C6A5D] transition-colors underline underline-offset-4 cursor-pointer focus:outline-hidden inline-flex items-center gap-1 sm:gap-1.5"
+                    aria-label="Agregar al Carrito"
                 >
-                    Agregar al Carrito
+                    <FontAwesomeIcon :icon="faCartPlus" class="text-xs" />
+                    <span class="hidden sm:inline">Agregar al Carrito</span>
+                    <span class="sm:hidden">Agregar</span>
                 </button>
             </div>
-            <h3 class="text-xl font-serif text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors line-clamp-1">
+            <h3 class="text-sm sm:text-lg md:text-xl font-serif text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors line-clamp-2 leading-snug">
                 {{ product.name }}
             </h3>
         </div>

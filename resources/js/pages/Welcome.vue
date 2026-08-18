@@ -52,12 +52,12 @@ function handleAddToCart(product: Product) {
     <Head title="Elegancia en cada gota" />
 
     <AppLayout :cart-count="cartCount">
-        <main class="max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col items-center justify-center text-center">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24 flex flex-col items-center justify-center text-center">
             <!-- Hero Section -->
-            <h1 class="text-4xl sm:text-5xl md:text-6xl text-[#8C6A5D] font-serif font-semibold mb-6 max-w-3xl leading-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl text-[#8C6A5D] font-serif font-semibold mb-4 sm:mb-6 max-w-3xl leading-tight">
                 Descubre tu look ideal con recomendaciones inteligentes.
             </h1>
-            <p class="text-base sm:text-lg md:text-xl text-[#2C2C2C]/80 mb-10 md:mb-12 max-w-2xl font-sans leading-relaxed">
+            <p class="text-sm sm:text-lg md:text-xl text-[#2C2C2C]/80 mb-8 sm:mb-12 max-w-2xl font-sans leading-relaxed">
                 Explora nuestra colección curada de cuidado facial, maquillaje y perfumería original. Deja que nuestro asistente inteligente encuentre exactamente lo que necesitas.
             </p>
 
@@ -69,7 +69,7 @@ function handleAddToCart(product: Product) {
             />
 
             <!-- Curated Products Showcase -->
-            <div class="mt-24 md:mt-32 w-full">
+            <div class="mt-14 sm:mt-24 md:mt-32 w-full">
                 <ProductGrid 
                     :products="products" 
                     title="Colección Destacada" 
