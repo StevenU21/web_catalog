@@ -9,6 +9,13 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 
 This application is a Laravel application running on PHP 8.4. You are an expert with the Laravel ecosystem. Always use the APIs that match the installed major version of each package — do not assume a version.
 
+### Laragon Environment & PHP Execution (Windows)
+- PHP binary path: `C:\laragon\bin\php\php-8.4.14-Win32-vs17-x64\php.exe`.
+- When executing CLI commands in PowerShell (artisan, pint, pest, composer), ALWAYS invoke PHP directly using its full binary path to avoid `CommandNotFoundException`:
+  - `& "C:\laragon\bin\php\php-8.4.14-Win32-vs17-x64\php.exe" artisan <command>`
+  - `& "C:\laragon\bin\php\php-8.4.14-Win32-vs17-x64\php.exe" vendor/bin/pint --format agent`
+  - `& "C:\laragon\bin\php\php-8.4.14-Win32-vs17-x64\php.exe" artisan test --compact`
+
 Before relying on a package's API, confirm its installed version:
 - PHP packages: run `composer show --direct` to list direct dependencies with versions, or `composer show <vendor/package>` for a single package.
 - JS packages: check `package.json` for the installed versions.
