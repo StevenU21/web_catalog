@@ -48,7 +48,7 @@ const suggestions = [
 </script>
 
 <template>
-    <div class="w-full max-w-2xl md:max-w-3xl flex flex-col items-center gap-3">
+    <div class="w-full flex flex-col items-start gap-3">
         <form @submit.prevent="handleSubmit" class="w-full relative group">
             <div class="absolute inset-y-0 left-0 pl-4 sm:pl-5 flex items-center pointer-events-none text-[#8C6A5D]">
                 <FontAwesomeIcon :icon="faMagnifyingGlass" class="w-4 h-4 text-sm" />
@@ -76,7 +76,7 @@ const suggestions = [
         </form>
 
         <!-- Quick AI Suggestion Badges -->
-        <div class="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-[#2C2C2C]/70">
+        <div class="flex flex-wrap items-center justify-start gap-2 pt-1 text-xs text-[#2C2C2C]/70">
             <span class="text-[#8C6A5D] font-medium hidden sm:inline">Sugerencias:</span>
             <button
                 v-for="item in suggestions"
