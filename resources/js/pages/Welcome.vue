@@ -79,13 +79,13 @@ function handleAddToCart(product: Product) {
                             v-model="searchQuery" 
                             :loading="isSearching" 
                             @submit="handleAiSearch"
-                            placeholder="¿Qué buscas hoy? Ej. Serum para manchas..."
+                            placeholder="¿Qué buscas hoy?"
                         />
                     </div>
                 </div>
 
-                <!-- Right Column: Images -->
-                <div class="grid grid-cols-2 gap-3 sm:gap-4 h-[350px] sm:h-[400px] lg:h-[450px] xl:h-[480px] min-h-0">
+                <!-- Right Column: Images (Desktop Only) -->
+                <div class="hidden lg:grid grid-cols-2 gap-3 sm:gap-4 lg:h-[450px] xl:h-[480px] min-h-0">
                     <div class="group relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden bg-gray-100 shadow-sm transition-transform duration-500 hover:-translate-y-1 hover:shadow-md cursor-pointer">
                         <img src="/hero/01.jpg" alt="Skincare routine" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                     </div>

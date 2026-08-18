@@ -11,7 +11,7 @@ const props = withDefaults(
     }>(),
     {
         modelValue: '',
-        placeholder: "¿Qué buscas hoy? Ej. Serum para manchas o piel grasa...",
+        placeholder: '¿Qué buscas hoy?',
         loading: false,
     }
 );
@@ -75,14 +75,14 @@ const suggestions = [
         </form>
 
         <!-- Quick AI Suggestion Badges -->
-        <div class="flex flex-wrap items-center justify-start gap-2 pt-1 text-xs text-[#2C2C2C]/70">
-            <span class="text-[#8C6A5D] font-medium hidden sm:inline">Sugerencias:</span>
+        <div class="w-full flex items-center justify-start gap-2 pt-1 text-xs text-[#2C2C2C]/70 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible pb-1">
+            <span class="text-[#8C6A5D] font-medium shrink-0">Sugerencias:</span>
             <button
                 v-for="item in suggestions"
                 :key="item"
                 type="button"
                 @click="applySuggestion(item)"
-                class="px-3 py-1 rounded-full bg-white border border-[#DAB6C4]/50 hover:border-[#A388A9] hover:text-[#8C6A5D] hover:bg-[#F7F5F8] transition-all cursor-pointer shadow-2xs"
+                class="px-3 py-1 rounded-full bg-white border border-[#DAB6C4]/50 hover:border-[#A388A9] hover:text-[#8C6A5D] hover:bg-[#F7F5F8] transition-all cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
             >
                 {{ item }}
             </button>

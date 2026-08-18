@@ -45,7 +45,7 @@ const emit = defineEmits<{
             <h3 class="text-sm sm:text-lg md:text-xl font-serif text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors line-clamp-2 leading-snug">
                 {{ product.name }}
             </h3>
-            <p v-if="product.description" class="text-xs sm:text-sm text-[#2C2C2C]/70 font-sans line-clamp-2 leading-relaxed pt-0.5">
+            <p v-if="product.description" class="hidden sm:block text-xs sm:text-sm text-[#2C2C2C]/70 font-sans line-clamp-2 leading-relaxed pt-0.5">
                 {{ product.description }}
             </p>
         </div>
