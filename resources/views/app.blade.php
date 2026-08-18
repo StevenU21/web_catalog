@@ -26,8 +26,8 @@
         <!-- Structured Data (Schema.org / Google Knowledge Graph) -->
         <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
-            "@type": "Store",
+            "@@context": "https://schema.org",
+            "@@type": "Store",
             "name": "Jolismar Store",
             "description": "Catálogo de productos originales de skincare, maquillaje y perfumería con envíos a toda Nicaragua.",
             "url": "{{ url('/') }}",
@@ -35,7 +35,7 @@
             "image": "{{ asset('hero/02.jpg') }}",
             "telephone": "+50588438783",
             "address": {
-                "@type": "PostalAddress",
+                "@@type": "PostalAddress",
                 "addressLocality": "Estelí",
                 "addressCountry": "NI"
             },
