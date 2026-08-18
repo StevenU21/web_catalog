@@ -137,7 +137,7 @@ onUnmounted(() => {
                     </div>
                     
                     <Link 
-                        href="/cart"
+                        href="/carrito"
                         @click="closeDropdown"
                         class="w-full flex items-center justify-center py-3 bg-[#A388A9] text-white font-medium rounded-xl hover:bg-[#8C6A5D] transition-colors gap-2 min-h-[44px]"
                     >
