@@ -10,9 +10,8 @@ import type { CartItem } from '@/composables/useCart';
 
 const { cartItems, cartTotalNumber, removeFromCart, parsePrice, formatPrice, generateWhatsAppLink } = useCart();
 
-const shipping = 80.00; // Mock shipping cost
 const subtotal = computed(() => cartTotalNumber.value);
-const total = computed(() => subtotal.value > 0 ? subtotal.value + shipping : 0);
+const total = computed(() => subtotal.value);
 
 const increaseQuantity = (item: CartItem) => {
     item.quantity++;
@@ -164,10 +163,7 @@ const removeItem = (id: number) => {
                                 <span>Subtotal</span>
                                 <span class="font-medium text-[#2C2C2C]">{{ formatPrice(subtotal) }}</span>
                             </div>
-                            <div class="flex justify-between items-center text-[#2C2C2C]/80">
-                                <span>Envío estimado</span>
-                                <span class="font-medium text-[#2C2C2C]">{{ formatPrice(shipping) }}</span>
-                            </div>
+
                         </div>
                         
                         <div class="border-t border-[#DAB6C4]/25 pt-4 mb-6 flex justify-between items-baseline">
