@@ -37,7 +37,7 @@ const clearFilters = () => {
     <!-- Filter Container -->
     <aside 
         class="fixed md:static inset-x-0 bottom-0 md:inset-y-0 md:right-0 z-50 w-full md:w-64 shrink-0 bg-[#F7F5F8] md:bg-transparent p-6 md:p-0 overflow-y-auto transform transition-transform duration-300 md:transform-none border-t md:border-l md:border-none border-[#DAB6C4]/30 md:h-full max-h-[85vh] md:max-h-none rounded-t-3xl md:rounded-none"
-        :class="isOpen ? 'translate-y-0 md:translate-x-0' : 'translate-y-full md:translate-x-full md:translate-y-0'"
+        :class="isOpen ? 'translate-y-0' : 'translate-y-full md:translate-y-0 md:translate-x-0'"
     >
         <!-- Mobile Header & Drag Handle -->
         <div class="md:hidden flex flex-col items-center mb-6">
