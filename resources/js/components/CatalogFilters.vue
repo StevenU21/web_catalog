@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { router } from '@inertiajs/vue3';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTimes, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { router } from '@inertiajs/vue3';
+import { ref, watch } from 'vue';
 
 const props = defineProps<{
     isOpen: boolean;
@@ -35,14 +35,25 @@ const localPrice = ref(currentFilters.value.maxPrice);
 
 const applyFilters = () => {
     const query: any = {};
-    if (currentFilters.value.brand) query.brand = currentFilters.value.brand;
-    if (currentFilters.value.skinType) query.skinType = currentFilters.value.skinType;
-    if (currentFilters.value.gender) query.gender = currentFilters.value.gender;
+
+    if (currentFilters.value.brand) {
+query.brand = currentFilters.value.brand;
+}
+
+    if (currentFilters.value.skinType) {
+query.skinType = currentFilters.value.skinType;
+}
+
+    if (currentFilters.value.gender) {
+query.gender = currentFilters.value.gender;
+}
+
     if (currentFilters.value.maxPrice && currentFilters.value.maxPrice < (props.filters?.maxPrice || 2000)) {
         query.maxPrice = currentFilters.value.maxPrice;
     }
     
     const urlParams = new URLSearchParams(window.location.search);
+
     if (urlParams.has('sort')) {
         query.sort = urlParams.get('sort');
     }

@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { index as skincareIndex } from '@/routes/skincare';
-import { index as makeupIndex } from '@/routes/makeup';
-import { index as perfumesIndex } from '@/routes/perfumes';
-import CartDropdown from './CartDropdown.vue';
-import CartBottomSheet from './CartBottomSheet.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
     faUser, 
     faSpa,
     faBrush,
     faSprayCanSparkles 
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Link } from '@inertiajs/vue3';
+import { index as makeupIndex } from '@/routes/makeup';
+import { index as perfumesIndex } from '@/routes/perfumes';
+import { index as skincareIndex } from '@/routes/skincare';
+import CartBottomSheet from './CartBottomSheet.vue';
+import CartDropdown from './CartDropdown.vue';
 
-defineProps<{
-    cartCount?: number;
-}>();
+// Props not needed for cart anymore
+
 </script>
 
 <template>
@@ -53,11 +52,11 @@ defineProps<{
                 </Link>
                 <!-- Desktop Cart -->
                 <div class="hidden sm:block">
-                    <CartDropdown :cart-count="cartCount" />
+                    <CartDropdown />
                 </div>
                 <!-- Mobile Cart -->
                 <div class="sm:hidden">
-                    <CartBottomSheet :cart-count="cartCount" />
+                    <CartBottomSheet />
                 </div>
             </div>
         </div>

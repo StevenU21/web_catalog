@@ -1,6 +1,6 @@
 <script lang="ts">
-import AppLayout from '../../layouts/AppLayout.vue';
 import { defineComponent } from 'vue';
+import AppLayout from '../../layouts/AppLayout.vue';
 
 export default defineComponent({
     layout: AppLayout

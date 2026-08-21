@@ -1,66 +1,38 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { Head, Link } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faTrash, faMinus, faPlus, faArrowLeft, faBagShopping, faTruckFast, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faTrash, faMinus, faPlus, faArrowLeft, faBagShopping, faTruckFast, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Head, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import { useCart } from '@/composables/useCart';
+import type { CartItem } from '@/composables/useCart';
 
-// Mock data
-const cartItems = ref([
-    {
-        id: 1,
-        name: 'Serum Iluminador Vitamina C',
-        category: 'Skincare',
-        price: 450.00,
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=300',
-    },
-    {
-        id: 2,
-        name: 'Labial Mate Aterciopelado',
-        category: 'Maquillaje',
-        price: 220.00,
-        quantity: 2,
-        image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=300',
-    }
-]);
-
-const subtotal = computed(() => {
-    return cartItems.value.reduce((total, item) => total + (item.price * item.quantity), 0);
-});
+const { cartItems, cartTotalNumber, removeFromCart, parsePrice, formatPrice, generateWhatsAppLink } = useCart();
 
 const shipping = 80.00; // Mock shipping cost
+const subtotal = computed(() => cartTotalNumber.value);
 const total = computed(() => subtotal.value > 0 ? subtotal.value + shipping : 0);
 
-const increaseQuantity = (item: any) => {
+const increaseQuantity = (item: CartItem) => {
     item.quantity++;
 };
 
-const decreaseQuantity = (item: any) => {
+const decreaseQuantity = (item: CartItem) => {
     if (item.quantity > 1) {
         item.quantity--;
     }
 };
 
 const removeItem = (id: number) => {
-    cartItems.value = cartItems.value.filter(item => item.id !== id);
-};
-
-const formatPrice = (amount: number) => {
-    return `C$ ${amount.toFixed(2)}`;
-};
-
-const handleWhatsAppCheckout = () => {
-    // This is where we will serialize the cart and redirect to wa.me
-    console.log('Redirecting to WhatsApp...');
+    removeFromCart(id);
 };
 </script>
 
 <template>
     <Head title="Tu Carrito - Jolismar Store" />
 
-    <AppLayout :cart-count="cartItems.length">
+    <AppLayout>
         <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
             
             <!-- Breadcrumb / Header Row -->
@@ -100,7 +72,7 @@ const handleWhatsAppCheckout = () => {
                                             <h3 class="text-sm sm:text-lg font-medium text-[#2C2C2C] mt-0.5 line-clamp-2 sm:truncate">{{ item.name }}</h3>
                                             <!-- Mobile Price -->
                                             <div class="text-base font-bold text-[#8C6A5D] mt-1 sm:hidden">
-                                                {{ formatPrice(item.price * item.quantity) }}
+                                                {{ formatPrice(parsePrice(item.price) * item.quantity) }}
                                             </div>
                                         </div>
                                         
@@ -142,9 +114,9 @@ const handleWhatsAppCheckout = () => {
                                         <div class="flex items-center gap-4">
                                             <!-- Price -->
                                             <div class="hidden sm:block text-right">
-                                                <div class="text-lg font-bold text-[#8C6A5D]">{{ formatPrice(item.price * item.quantity) }}</div>
+                                                <div class="text-lg font-bold text-[#8C6A5D]">{{ formatPrice(parsePrice(item.price) * item.quantity) }}</div>
                                                 <div v-if="item.quantity > 1" class="text-xs text-[#2C2C2C]/50 mt-0.5">
-                                                    {{ formatPrice(item.price) }} c/u
+                                                    {{ item.price }} c/u
                                                 </div>
                                             </div>
 
@@ -204,13 +176,15 @@ const handleWhatsAppCheckout = () => {
                         </div>
 
                         <!-- Primary CTA -->
-                        <button 
-                            @click="handleWhatsAppCheckout"
+                        <a 
+                            :href="generateWhatsAppLink()"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             class="w-full py-3.5 px-5 bg-[#A388A9] text-white font-bold rounded-2xl hover:bg-[#8C6A5D] hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 text-base cursor-pointer"
                         >
                             <FontAwesomeIcon :icon="faWhatsapp" class="text-xl" />
                             <span>Confirmar Pedido</span>
-                        </button>
+                        </a>
                         
                         <p class="text-xs text-center text-[#2C2C2C]/60 mt-3.5 leading-relaxed">
                             Te redirigiremos a WhatsApp con los detalles de tu pedido listos para coordinar.

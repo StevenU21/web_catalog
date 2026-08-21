@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Head, router } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
-import AiSearchBar from '@/components/AiSearchBar.vue';
-import AiLoadingOverlay from '@/components/AiLoadingOverlay.vue';
-import ProductGrid from '@/components/ProductGrid.vue';
-import HeroGallery from '@/components/HeroGallery.vue';
-import type { Product } from '@/types';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Head, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import AiLoadingOverlay from '@/components/AiLoadingOverlay.vue';
+import AiSearchBar from '@/components/AiSearchBar.vue';
+import HeroGallery from '@/components/HeroGallery.vue';
+import ProductGrid from '@/components/ProductGrid.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import type { Product } from '@/types';
 
 const searchQuery = ref('');
 const isSearching = ref(false);
-const cartCount = ref(0);
+import { useCart } from '@/composables/useCart';
+
+const { addToCart } = useCart();
 
 const largeHeroImages = [
     '/hero/01.avif',
@@ -55,25 +57,33 @@ const products = ref<Product[]>([
 ]);
 
 async function handleAiSearch(query: string) {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+return;
+}
     
-    router.post('/search/ai', { query }, {
+    router.get('/search/ai', { query }, {
         preserveState: true,
-        onStart: () => { isSearching.value = true; },
-        onFinish: () => { isSearching.value = false; },
-        onError: () => { isSearching.value = false; }
+        onStart: () => {
+ isSearching.value = true; 
+},
+        onFinish: () => {
+ isSearching.value = false; 
+},
+        onError: () => {
+ isSearching.value = false; 
+}
     });
 }
 
 function handleAddToCart(product: Product) {
-    cartCount.value++;
+    addToCart(product);
 }
 </script>
 
 <template>
     <Head title="Elegancia en cada gota" />
 
-    <AppLayout :cart-count="cartCount">
+    <AppLayout>
         <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-12 md:pt-12 md:pb-16">
             <!-- Hero Section -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">

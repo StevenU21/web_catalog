@@ -1,33 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { Link } from '@inertiajs/vue3';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBagShopping, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Link } from '@inertiajs/vue3';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useCart } from '@/composables/useCart';
 
-defineProps<{
-    cartCount?: number;
-}>();
+const { cartItems, cartCount, cartTotal, removeFromCart, generateWhatsAppLink } = useCart();
 
 const isOpen = ref(false);
 const dropdownRef = ref<HTMLElement | null>(null);
-
-// Mock data for design
-const mockCartItems = [
-    {
-        id: 1,
-        name: 'Serum Iluminador Vitamina C',
-        price: 'C$ 450.00',
-        quantity: 1,
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=150',
-    },
-    {
-        id: 2,
-        name: 'Labial Mate Aterciopelado',
-        price: 'C$ 220.00',
-        quantity: 2,
-        image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=150',
-    }
-];
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
@@ -65,7 +47,7 @@ onUnmounted(() => {
             <FontAwesomeIcon :icon="faBagShopping" />
             <span class="hidden xs:inline">Carrito</span>
             <span class="bg-white/20 px-1.5 py-0.5 rounded-full text-xs font-semibold">
-                {{ cartCount ?? 0 }}
+                {{ cartCount }}
             </span>
         </button>
 
@@ -94,10 +76,10 @@ onUnmounted(() => {
                     </button>
                 </div>
 
-                <!-- Cart Items (Mock) -->
+                <!-- Cart Items -->
                 <div class="overflow-y-auto px-5 py-3 space-y-4 max-h-80">
-                    <template v-if="cartCount && cartCount > 0">
-                        <div v-for="item in mockCartItems" :key="item.id" class="flex gap-4 items-center group">
+                    <template v-if="cartItems.length > 0">
+                        <div v-for="item in cartItems" :key="item.id" class="flex gap-4 items-center group">
                             <!-- Image -->
                             <div class="w-16 h-16 rounded-xl overflow-hidden bg-[#F7F5F8] shrink-0 border border-[#DAB6C4]/20">
                                 <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
@@ -112,6 +94,7 @@ onUnmounted(() => {
 
                             <!-- Remove Action -->
                             <button 
+                                @click="removeFromCart(item.id)"
                                 class="w-8 h-8 flex items-center justify-center text-[#2C2C2C]/40 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
                                 aria-label="Eliminar item"
                             >
@@ -133,15 +116,16 @@ onUnmounted(() => {
                 <div class="px-5 py-4 bg-[#F7F5F8]/50 border-t border-[#DAB6C4]/20">
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-[#2C2C2C] font-medium">Subtotal</span>
-                        <span class="text-[#8C6A5D] font-bold text-lg">C$ 890.00</span>
+                        <span class="text-[#8C6A5D] font-bold text-lg">{{ cartTotal }}</span>
                     </div>
                     
                     <Link 
+                        v-if="cartItems.length > 0"
                         href="/carrito"
                         @click="closeDropdown"
                         class="w-full flex items-center justify-center py-3 bg-[#A388A9] text-white font-medium rounded-xl hover:bg-[#8C6A5D] transition-colors gap-2 min-h-[44px]"
                     >
-                        <span>Ver Vista Completa</span>
+                        <span>Ver Carrito Completo</span>
                     </Link>
                 </div>
             </div>

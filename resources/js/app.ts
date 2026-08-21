@@ -1,5 +1,5 @@
-import { createInertiaApp } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { createInertiaApp } from '@inertiajs/vue3';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/playfair-display';
 

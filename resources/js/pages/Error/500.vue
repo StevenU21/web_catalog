@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { Head } from '@inertiajs/vue3';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faServer } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Head } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const props = defineProps<{ status: number }>();
 
 const title = computed(() => {
-    if (props.status === 403) return 'Acceso Denegado';
+    if (props.status === 403) {
+return 'Acceso Denegado';
+}
+
     return 'Mantenimiento del Servidor';
 });
 
 const description = computed(() => {
-    if (props.status === 403) return 'No tienes permiso para acceder a este recurso.';
+    if (props.status === 403) {
+return 'No tienes permiso para acceder a este recurso.';
+}
+
     return 'Nuestros servidores están experimentando dificultades técnicas. Nuestro equipo técnico ya ha sido notificado y está trabajando para restaurar el servicio. Por favor, intenta de nuevo en unos minutos.';
 });
 </script>

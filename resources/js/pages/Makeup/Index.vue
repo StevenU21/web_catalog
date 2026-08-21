@@ -1,12 +1,12 @@
-﻿<script setup lang="ts">
-import { ref } from 'vue';
+<script setup lang="ts">
 import { Head, router } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
-import ProductGrid from '@/components/ProductGrid.vue';
-import CatalogToolbar from '@/components/CatalogToolbar.vue';
+import { ref } from 'vue';
 import CatalogFilters from '@/components/CatalogFilters.vue';
+import CatalogToolbar from '@/components/CatalogToolbar.vue';
+import ProductGrid from '@/components/ProductGrid.vue';
 import ScrollToTop from '@/components/ScrollToTop.vue';
-import { type Product } from '@/types';
+import AppLayout from '@/layouts/AppLayout.vue';
+import type {Product} from '@/types';
 
 const props = defineProps<{
     categoryName: string;
@@ -15,18 +15,21 @@ const props = defineProps<{
     activeFilters?: Record<string, any>;
 }>();
 
-const cartCount = ref(0);
+import { useCart } from '@/composables/useCart';
+
+const { addToCart } = useCart();
 const isFiltersOpen = ref(false);
 
 function handleAddToCart(product: Product) {
-    cartCount.value++;
-    // Future: Call Cart API or emit event
+    addToCart(product);
 }
 
 function handleSortChange(value: string) {
     const urlParams = new URLSearchParams(window.location.search);
     const query: Record<string, any> = {};
-    urlParams.forEach((v, k) => { query[k] = v; });
+    urlParams.forEach((v, k) => {
+ query[k] = v; 
+});
     query.sort = value;
     router.get(window.location.pathname, query, {
         preserveState: true,
@@ -39,7 +42,7 @@ function handleSortChange(value: string) {
 <template>
     <Head :title="categoryName + ' | Jolismar Store'" />
 
-    <AppLayout :cart-count="cartCount">
+    <AppLayout>
         <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-12 md:pt-12 md:pb-16 relative">
             <div class="mb-8">
                 <h1 class="text-3xl sm:text-4xl text-[#8C6A5D] font-serif font-semibold mb-2">

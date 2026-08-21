@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Head, router } from '@inertiajs/vue3';
-import AppLayout from '@/layouts/AppLayout.vue';
-import AiSearchBar from '@/components/AiSearchBar.vue';
-import AiLoadingOverlay from '@/components/AiLoadingOverlay.vue';
-import ProductGrid from '@/components/ProductGrid.vue';
-import type { Product } from '@/types';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faWandMagicSparkles, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Head, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import AiLoadingOverlay from '@/components/AiLoadingOverlay.vue';
+import AiSearchBar from '@/components/AiSearchBar.vue';
+import ProductGrid from '@/components/ProductGrid.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import type { Product } from '@/types';
 
 const props = defineProps<{
     products: Product[];
@@ -17,28 +17,38 @@ const props = defineProps<{
 
 const searchQuery = ref(props.initialQuery);
 const isSearching = ref(false);
-const cartCount = ref(0);
+import { useCart } from '@/composables/useCart';
+
+const { addToCart } = useCart();
 
 function handleAiSearch(query: string) {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+return;
+}
     
-    router.post('/search/ai', { query }, {
+    router.get('/search/ai', { query }, {
         preserveState: true,
-        onStart: () => { isSearching.value = true; },
-        onFinish: () => { isSearching.value = false; },
-        onError: () => { isSearching.value = false; }
+        onStart: () => {
+ isSearching.value = true; 
+},
+        onFinish: () => {
+ isSearching.value = false; 
+},
+        onError: () => {
+ isSearching.value = false; 
+}
     });
 }
 
 function handleAddToCart(product: Product) {
-    cartCount.value++;
+    addToCart(product);
 }
 </script>
 
 <template>
     <Head :title="`Búsqueda: ${initialQuery}`" />
 
-    <AppLayout :cart-count="cartCount">
+    <AppLayout>
         <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-10">
             <!-- Breadcrumb / Header Row -->
             <div class="flex items-center justify-between mb-5 w-full max-w-3xl mx-auto">

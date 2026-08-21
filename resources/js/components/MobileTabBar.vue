@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { usePage, Link } from '@inertiajs/vue3';
-import { index as skincareIndex } from '@/routes/skincare';
-import { index as makeupIndex } from '@/routes/makeup';
-import { index as perfumesIndex } from '@/routes/perfumes';
-import { home } from '@/routes';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
     faHouse, 
     faSpa,
     faBrush,
     faSprayCanSparkles
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { usePage, Link } from '@inertiajs/vue3';
+import { home } from '@/routes';
+import { index as makeupIndex } from '@/routes/makeup';
+import { index as perfumesIndex } from '@/routes/perfumes';
+import { index as skincareIndex } from '@/routes/skincare';
 
 const page = usePage();
 

@@ -24,6 +24,7 @@ const rotateGallery = () => {
 
     if (target === 0 && props.largeImages.length > 1) {
         const available = props.largeImages.filter(img => img !== visibleLarge.value);
+
         if (available.length > 0) {
             visibleLarge.value = available[Math.floor(Math.random() * available.length)];
         }
@@ -31,8 +32,10 @@ const rotateGallery = () => {
         const available = props.squareImages.filter(
             img => img !== visibleSquare1.value && img !== visibleSquare2.value
         );
+
         if (available.length > 0) {
             const nextImg = available[Math.floor(Math.random() * available.length)];
+
             if (target === 1) {
                 visibleSquare1.value = nextImg;
             } else {
@@ -52,7 +55,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    if (intervalId) clearInterval(intervalId);
+    if (intervalId) {
+clearInterval(intervalId);
+}
 });
 </script>
 
