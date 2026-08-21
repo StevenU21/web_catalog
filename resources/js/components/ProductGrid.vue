@@ -10,10 +10,12 @@ withDefaults(
         products: Product[];
         title?: string;
         viewAllHref?: string;
+        hideViewAll?: boolean;
     }>(),
     {
         title: 'Colección Destacada',
         viewAllHref: '#',
+        hideViewAll: false,
     }
 );
 
@@ -30,7 +32,7 @@ const emit = defineEmits<{
                 {{ title }}
             </h2>
             <Link 
-                v-if="viewAllHref" 
+                v-if="viewAllHref && !hideViewAll" 
                 :href="viewAllHref" 
                 class="text-xs sm:text-sm font-medium text-[#A388A9] hover:text-[#8C6A5D] transition-colors flex items-center gap-1.5 sm:gap-2 group"
             >
