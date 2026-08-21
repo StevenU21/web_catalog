@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CatalogService;
+use App\Services\PerfumesService;
 use Inertia\Inertia;
 
 class PerfumesController extends Controller
 {
-    public function __construct(private readonly CatalogService $catalogService)
+    public function __construct(private readonly PerfumesService $perfumesService)
     {
     }
 
     public function index()
     {
-        $products = $this->catalogService->getProductsByCategory('perfumeria');
+        $products = $this->perfumesService->getAllProducts();
         
         $dtoArrays = array_map(fn($dto) => $dto->toArray(), array_values($products));
 
