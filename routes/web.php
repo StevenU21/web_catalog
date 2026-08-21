@@ -15,5 +15,6 @@ Route::get('/maquillaje', [MakeupController::class, 'index'])->name('makeup.inde
 Route::get('/skincare', [SkincareController::class, 'index'])->name('skincare.index');
 Route::get('/perfumeria', [PerfumesController::class, 'index'])->name('perfumes.index');
 Route::get('/catalogo', [CatalogController::class, 'index'])->name('catalog.index');
+Route::get('/catalogo/{id}', [CatalogController::class, 'show'])->name('catalog.show');
 
 Route::get('/search/ai', [AiSearchController::class, 'search'])->name('search.ai');

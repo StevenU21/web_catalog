@@ -66,4 +66,29 @@ class CatalogController extends Controller
             ]
         ]);
     }
+
+    public function show(int $id)
+    {
+        $products = $this->catalogService->getProductsByIds([$id]);
+
+        if (empty($products)) {
+            abort(404, 'Producto no encontrado');
+        }
+
+        $product = $products[0];
+
+        // Let's get related products based on category, limited to 4
+        $allProducts = $this->catalogService->getAllProducts();
+        $relatedProducts = array_filter($allProducts, function ($p) use ($product) {
+            return $p->category === $product->category && $p->id !== $product->id;
+        });
+
+        // Limit to 4 related products
+        $relatedProducts = array_slice($relatedProducts, 0, 4);
+
+        return Inertia::render('Catalog/Show', [
+            'product' => $product->toArray(),
+            'relatedProducts' => array_map(fn($p) => $p->toArray(), $relatedProducts)
+        ]);
+    }
 }
