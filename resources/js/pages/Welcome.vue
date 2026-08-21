@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import AiSearchBar from '@/components/AiSearchBar.vue';
+import AiLoadingOverlay from '@/components/AiLoadingOverlay.vue';
 import ProductGrid from '@/components/ProductGrid.vue';
 import HeroGallery from '@/components/HeroGallery.vue';
 import type { Product } from '@/types';
@@ -165,4 +166,7 @@ function handleAddToCart(product: Product) {
             </div>
         </main>
     </AppLayout>
+
+    <!-- Global Fullscreen AI Loading Overlay -->
+    <AiLoadingOverlay :show="isSearching" />
 </template>
