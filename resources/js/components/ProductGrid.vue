@@ -13,7 +13,7 @@ withDefaults(
         hideViewAll?: boolean;
     }>(),
     {
-        title: 'Colección Destacada',
+        title: undefined,
         viewAllHref: '#',
         hideViewAll: false,
     }
@@ -26,8 +26,8 @@ const emit = defineEmits<{
 
 <template>
     <section class="w-full text-left">
-        <!-- Section Header -->
-        <div class="flex items-center justify-between mb-6 sm:mb-10 border-b border-[#DAB6C4]/30 pb-3 sm:pb-4">
+        <!-- Section Header (Only shown when title is provided) -->
+        <div v-if="title" class="flex items-center justify-between mb-6 sm:mb-10 border-b border-[#DAB6C4]/30 pb-3 sm:pb-4">
             <h2 class="text-xl sm:text-2xl md:text-3xl text-[#8C6A5D] font-serif font-semibold">
                 {{ title }}
             </h2>

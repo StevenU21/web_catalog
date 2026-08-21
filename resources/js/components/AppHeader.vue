@@ -19,7 +19,7 @@ defineProps<{
 </script>
 
 <template>
-    <header class="w-full border-b border-[#DAB6C4]/30 bg-[#F7F5F8]/95 backdrop-blur-xs sticky top-0 z-40">
+    <header class="w-full border-b border-[#DAB6C4]/30 bg-[#F7F5F8]/95 backdrop-blur-xs sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between">
             <!-- Brand Logo & Typographic Wordmark -->
             <Link href="/" class="flex items-center gap-2.5 sm:gap-3 hover:opacity-90 transition-opacity">

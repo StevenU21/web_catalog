@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 defineProps<{
     isOpen: boolean;
@@ -30,13 +30,13 @@ const clearFilters = () => {
     <!-- Overlay for mobile -->
     <div 
         v-if="isOpen"
-        class="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity"
+        class="fixed inset-0 bg-black/50 z-50 md:hidden transition-opacity"
         @click="emit('close')"
     ></div>
 
     <!-- Filter Container -->
     <aside 
-        class="fixed md:static inset-x-0 bottom-0 md:inset-y-0 md:right-0 z-50 w-full md:w-64 shrink-0 bg-[#F7F5F8] md:bg-transparent p-6 md:p-0 overflow-y-auto transform transition-transform duration-300 md:transform-none border-t md:border-l md:border-none border-[#DAB6C4]/30 md:h-full max-h-[85vh] md:max-h-none rounded-t-3xl md:rounded-none"
+        class="fixed md:static inset-x-0 bottom-0 md:inset-y-0 md:right-0 z-50 md:z-auto w-full md:w-64 shrink-0 bg-[#F7F5F8] md:bg-transparent p-6 md:p-0 overflow-y-auto transform transition-transform duration-300 md:transform-none border-t md:border-l md:border-none border-[#DAB6C4]/30 md:h-full max-h-[85vh] md:max-h-none rounded-t-3xl md:rounded-none"
         :class="isOpen ? 'translate-y-0' : 'translate-y-full md:translate-y-0 md:translate-x-0'"
     >
         <!-- Mobile Header & Drag Handle -->
@@ -108,15 +108,18 @@ const clearFilters = () => {
             <div class="pt-4 border-t border-[#DAB6C4]/30 flex flex-col gap-3">
                 <button 
                     @click="emit('close')"
-                    class="w-full md:hidden bg-[#A388A9] text-white py-2 rounded font-medium hover:bg-[#8C6A5D] transition-colors"
+                    class="w-full md:hidden bg-[#A388A9] text-white py-3 rounded-xl font-medium shadow-xs hover:bg-[#8C6A5D] transition-colors min-h-[44px] cursor-pointer"
+                    type="button"
                 >
                     Aplicar Filtros
                 </button>
                 <button 
                     @click="clearFilters"
-                    class="w-full text-sm text-[#2C2C2C]/70 hover:text-[#8C6A5D] transition-colors"
+                    class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-[#DAB6C4] text-[#8C6A5D] bg-white/60 hover:bg-[#DAB6C4]/20 hover:border-[#8C6A5D] font-medium text-xs sm:text-sm transition-all shadow-2xs cursor-pointer min-h-[40px] active:scale-98"
+                    type="button"
                 >
-                    Limpiar Todo
+                    <FontAwesomeIcon :icon="faRotateLeft" class="text-xs text-[#A388A9]" />
+                    <span>Limpiar Filtros</span>
                 </button>
             </div>
         </div>

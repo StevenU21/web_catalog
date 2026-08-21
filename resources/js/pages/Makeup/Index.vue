@@ -16,12 +16,6 @@ const props = defineProps<{
 const cartCount = ref(0);
 const isFiltersOpen = ref(false);
 
-const breadcrumbs = [
-    { label: 'Inicio', url: '/' },
-    { label: 'Catálogo', url: '#' },
-    { label: props.categoryName }
-];
-
 function handleAddToCart(product: Product) {
     cartCount.value++;
     // Future: Call Cart API or emit event
@@ -47,7 +41,6 @@ function handleSortChange(value: string) {
             </div>
 
             <CatalogToolbar 
-                :breadcrumbs="breadcrumbs"
                 :total-products="products.length"
                 @toggle-filters="isFiltersOpen = true"
                 @sort-change="handleSortChange"
@@ -63,8 +56,6 @@ function handleSortChange(value: string) {
                 <div class="flex-1 w-full min-w-0">
                     <ProductGrid 
                         :products="products" 
-                        title="Catálogo Completo" 
-                        :hideViewAll="true"
                         @add-to-cart="handleAddToCart" 
                     />
                 </div>
