@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
+import { index as skincareIndex } from '@/routes/skincare';
+import { index as makeupIndex } from '@/routes/makeup';
+import { index as perfumesIndex } from '@/routes/perfumes';
 import CartDropdown from './CartDropdown.vue';
 import CartBottomSheet from './CartBottomSheet.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -28,15 +31,15 @@ defineProps<{
 
             <!-- Desktop Categorized Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                <Link :href="skincareIndex.url()" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
                     <FontAwesomeIcon :icon="faSpa" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
                     <span>Skincare</span>
                 </Link>
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                <Link :href="makeupIndex.url()" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
                     <FontAwesomeIcon :icon="faBrush" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
                     <span>Maquillaje</span>
                 </Link>
-                <Link href="#" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                <Link :href="perfumesIndex.url()" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
                     <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
                     <span>Perfumería</span>
                 </Link>

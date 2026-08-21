@@ -25,7 +25,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
             $status = $response->getStatusCode();
             
-            // Mostrar 404 siempre. Mostrar 500, 503, 403 solo en producción (para no perder el stack trace de Ignition en local)
             if ($status === 404 || (!app()->environment(['local', 'testing']) && in_array($status, [500, 503, 403]))) {
                 $page = $status === 404 ? '404' : '500';
                 return Inertia::render("Error/{$page}", ['status' => $status])

@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { usePage, Link } from '@inertiajs/vue3';
+import { index as skincareIndex } from '@/routes/skincare';
+import { index as makeupIndex } from '@/routes/makeup';
+import { index as perfumesIndex } from '@/routes/perfumes';
+import { home } from '@/routes';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
     faHouse, 
@@ -22,25 +26,25 @@ const isActive = (path: string) => {
         <div class="flex justify-around items-center px-2 py-2">
             
             <!-- Home -->
-            <Link href="/" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive('/') ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
+            <Link :href="home.url()" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive(home.url()) ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
                 <FontAwesomeIcon :icon="faHouse" class="text-xl mb-1" />
                 <span class="text-[10px] font-medium">Inicio</span>
             </Link>
 
             <!-- Skincare -->
-            <Link href="#" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive('/skincare') ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
+            <Link :href="skincareIndex.url()" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive(skincareIndex.url()) ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
                 <FontAwesomeIcon :icon="faSpa" class="text-xl mb-1" />
                 <span class="text-[10px] font-medium">Skincare</span>
             </Link>
 
             <!-- Maquillaje -->
-            <Link href="#" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive('/maquillaje') ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
+            <Link :href="makeupIndex.url()" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive(makeupIndex.url()) ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
                 <FontAwesomeIcon :icon="faBrush" class="text-xl mb-1" />
                 <span class="text-[10px] font-medium">Maquillaje</span>
             </Link>
 
             <!-- Perfumería -->
-            <Link href="#" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive('/perfumeria') ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
+            <Link :href="perfumesIndex.url()" class="flex flex-col items-center justify-center w-16 min-h-[44px] transition-colors" :class="isActive(perfumesIndex.url()) ? 'text-[#8C6A5D]' : 'text-[#2C2C2C]/50 hover:text-[#A388A9]'">
                 <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xl mb-1" />
                 <span class="text-[10px] font-medium">Perfumería</span>
             </Link>
