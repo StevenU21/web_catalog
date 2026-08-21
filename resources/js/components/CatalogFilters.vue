@@ -7,12 +7,14 @@ import { ref, watch } from 'vue';
 const props = defineProps<{
     isOpen: boolean;
     filters?: {
+        categories?: string[];
         brands?: string[];
         skinTypes?: string[];
         genders?: string[];
         maxPrice?: number;
     };
     activeFilters?: {
+        category?: string;
         brand?: string;
         skinType?: string;
         gender?: string;
@@ -25,6 +27,7 @@ const emit = defineEmits<{
 }>();
 
 const currentFilters = ref({
+    category: props.activeFilters?.category || '',
     brand: props.activeFilters?.brand || '',
     skinType: props.activeFilters?.skinType || '',
     gender: props.activeFilters?.gender || '',
@@ -36,9 +39,13 @@ const localPrice = ref(currentFilters.value.maxPrice);
 const applyFilters = () => {
     const query: any = {};
 
+    if (currentFilters.value.category) {
+        query.category = currentFilters.value.category;
+    }
+
     if (currentFilters.value.brand) {
-query.brand = currentFilters.value.brand;
-}
+        query.brand = currentFilters.value.brand;
+    }
 
     if (currentFilters.value.skinType) {
 query.skinType = currentFilters.value.skinType;
@@ -66,7 +73,7 @@ query.gender = currentFilters.value.gender;
 };
 
 watch(
-    () => [currentFilters.value.brand, currentFilters.value.skinType, currentFilters.value.gender, currentFilters.value.maxPrice],
+    () => [currentFilters.value.category, currentFilters.value.brand, currentFilters.value.skinType, currentFilters.value.gender, currentFilters.value.maxPrice],
     () => {
         applyFilters();
     }
@@ -78,6 +85,7 @@ const onPriceChange = (event: Event) => {
 };
 
 const clearFilters = () => {
+    currentFilters.value.category = '';
     currentFilters.value.brand = '';
     currentFilters.value.skinType = '';
     currentFilters.value.gender = '';
@@ -112,6 +120,23 @@ const clearFilters = () => {
         </div>
 
         <div class="space-y-8" v-if="filters">
+            <!-- Category Filter -->
+            <div v-if="filters.categories && filters.categories.length > 0">
+                <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Categoría</h3>
+                <div class="space-y-2">
+                    <label v-for="category in filters.categories" :key="category" class="flex items-center gap-2 cursor-pointer group">
+                        <input 
+                            type="radio" 
+                            name="category" 
+                            :value="category" 
+                            v-model="currentFilters.category"
+                            class="text-[#A388A9] focus:ring-[#A388A9] border-[#DAB6C4] bg-transparent cursor-pointer"
+                        >
+                        <span class="text-sm text-[#2C2C2C] group-hover:text-[#A388A9] transition-colors">{{ category }}</span>
+                    </label>
+                </div>
+            </div>
+
             <!-- Brand Filter -->
             <div v-if="filters.brands && filters.brands.length > 0">
                 <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Marca</h3>

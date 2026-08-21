@@ -10,6 +10,10 @@ import ProductGrid from '@/components/ProductGrid.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import type { Product } from '@/types';
 
+const props = defineProps<{
+    featuredProducts: Product[];
+}>();
+
 const searchQuery = ref('');
 const isSearching = ref(false);
 import { useCart } from '@/composables/useCart';
@@ -29,32 +33,6 @@ const squareHeroImages = [
     '/hero/06.avif',
 ];
 
-const products = ref<Product[]>([
-    {
-        id: 1,
-        name: 'Serum Iluminador Vitamina C',
-        category: 'Skincare',
-        price: 'C$ 450.00',
-        description: 'Fórmula antioxidante de alta potencia para unificar el tono y aportar luminosidad radiante.',
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=600',
-    },
-    {
-        id: 2,
-        name: 'Labial Mate Aterciopelado',
-        category: 'Maquillaje',
-        price: 'C$ 220.00',
-        description: 'Color intenso de larga duración con acabado mate aterciopelado y sensación ligera.',
-        image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&q=80&w=600',
-    },
-    {
-        id: 3,
-        name: 'Midnight Bloom Eau de Parfum',
-        category: 'Perfumería',
-        price: 'C$ 850.00',
-        description: 'Fragancia sofisticada con notas florales nocturnas, toques de vainilla y ámbar cálido.',
-        image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600',
-    },
-]);
 
 async function handleAiSearch(query: string) {
     if (!query.trim()) {
@@ -129,8 +107,9 @@ function handleAddToCart(product: Product) {
             <!-- Curated Products Showcase -->
             <div class="mt-12 sm:mt-16 md:mt-20 w-full">
                 <ProductGrid 
-                    :products="products" 
-                    title="Nuestra Selección" 
+                    :products="featuredProducts" 
+                    title="Colección Premium" 
+                    view-all-href="/catalogo"
                     @add-to-cart="handleAddToCart" 
                 />
             </div>
