@@ -10,6 +10,7 @@ import type { Product } from '@/types';
 const searchQuery = ref('');
 const isSearching = ref(false);
 const cartCount = ref(0);
+const aiRationale = ref('');
 
 const largeHeroImages = [
     '/hero/01.avif',
@@ -24,7 +25,7 @@ const squareHeroImages = [
     '/hero/06.avif',
 ];
 
-const products: Product[] = [
+const products = ref<Product[]>([
     {
         id: 1,
         name: 'Serum Iluminador Vitamina C',
@@ -49,15 +50,51 @@ const products: Product[] = [
         description: 'Fragancia sofisticada con notas florales nocturnas, toques de vainilla y ámbar cálido.',
         image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600',
     },
-];
+]);
 
-function handleAiSearch(query: string) {
+async function handleAiSearch(query: string) {
     if (!query.trim()) return;
+    
     isSearching.value = true;
-    // Future AI intent parsing & recommendation flow
-    setTimeout(() => {
+    aiRationale.value = '';
+    
+    try {
+        const xsrfCookie = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('XSRF-TOKEN='))
+            ?.split('=')[1];
+
+        const response = await fetch('/search/ai', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-XSRF-TOKEN': decodeURIComponent(xsrfCookie || '')
+            },
+            body: JSON.stringify({ query })
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        
+        if (data.products && data.products.length > 0) {
+            products.value = data.products;
+        } else {
+            products.value = [];
+        }
+        
+        if (data.rationale) {
+            aiRationale.value = data.rationale;
+        }
+    } catch (error) {
+        console.error('AI Search Error:', error);
+        aiRationale.value = 'Lo sentimos, hubo un problema al procesar tu búsqueda. Por favor, intenta de nuevo.';
+    } finally {
         isSearching.value = false;
-    }, 600);
+    }
 }
 
 function handleAddToCart(product: Product) {
@@ -107,9 +144,22 @@ function handleAddToCart(product: Product) {
 
             <!-- Curated Products Showcase -->
             <div class="mt-12 sm:mt-16 md:mt-20 w-full">
+                <!-- AI Rationale Banner -->
+                <div v-if="aiRationale" class="mb-8 p-6 bg-white border border-[#DAB6C4] rounded-2xl shadow-sm animate-fade-in-up">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-[#F3EBED] text-[#A388A9] rounded-full shrink-0 mt-1">
+                            <FontAwesomeIcon icon="wand-magic-sparkles" class="w-5 h-5" />
+                        </div>
+                        <div>
+                            <h3 class="text-[#8C6A5D] font-serif text-lg font-semibold mb-2">Recomendación de la IA</h3>
+                            <p class="text-[#2C2C2C]/80 font-sans leading-relaxed">{{ aiRationale }}</p>
+                        </div>
+                    </div>
+                </div>
+
                 <ProductGrid 
                     :products="products" 
-                    title="Colección Destacada" 
+                    title="Resultados del Catálogo" 
                     @add-to-cart="handleAddToCart" 
                 />
             </div>
