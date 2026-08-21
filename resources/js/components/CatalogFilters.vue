@@ -36,14 +36,18 @@ const clearFilters = () => {
 
     <!-- Filter Container -->
     <aside 
-        class="fixed md:static inset-y-0 right-0 z-50 w-80 md:w-64 shrink-0 bg-[#F7F5F8] md:bg-transparent p-6 md:p-0 overflow-y-auto transform transition-transform duration-300 md:transform-none border-l md:border-none border-[#DAB6C4]/30 h-full"
-        :class="isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'"
+        class="fixed md:static inset-x-0 bottom-0 md:inset-y-0 md:right-0 z-50 w-full md:w-64 shrink-0 bg-[#F7F5F8] md:bg-transparent p-6 md:p-0 overflow-y-auto transform transition-transform duration-300 md:transform-none border-t md:border-l md:border-none border-[#DAB6C4]/30 md:h-full max-h-[85vh] md:max-h-none rounded-t-3xl md:rounded-none"
+        :class="isOpen ? 'translate-y-0 md:translate-x-0' : 'translate-y-full md:translate-x-full md:translate-y-0'"
     >
-        <div class="flex items-center justify-between mb-6 md:hidden">
-            <h2 class="text-xl font-serif font-semibold text-[#8C6A5D]">Filtros</h2>
-            <button @click="emit('close')" class="text-[#2C2C2C]/70 hover:text-[#8C6A5D] transition-colors">
-                <FontAwesomeIcon :icon="faTimes" class="text-lg" />
-            </button>
+        <!-- Mobile Header & Drag Handle -->
+        <div class="md:hidden flex flex-col items-center mb-6">
+            <div class="w-12 h-1.5 bg-[#DAB6C4]/50 rounded-full mb-4"></div>
+            <div class="flex items-center justify-between w-full">
+                <h2 class="text-xl font-serif font-semibold text-[#8C6A5D]">Filtros</h2>
+                <button @click="emit('close')" class="text-[#2C2C2C]/70 hover:text-[#8C6A5D] transition-colors p-2">
+                    <FontAwesomeIcon :icon="faTimes" class="text-lg" />
+                </button>
+            </div>
         </div>
 
         <div class="space-y-8">

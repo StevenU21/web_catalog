@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="min-h-screen bg-[#F7F5F8] text-[#2C2C2C] font-sans selection:bg-[#DAB6C4] selection:text-[#2C2C2C] flex flex-col pb-20 md:pb-0">
+    <div class="min-h-screen bg-[#F7F5F8] text-[#2C2C2C] font-sans selection:bg-[#DAB6C4] selection:text-[#2C2C2C] flex flex-col pb-28 md:pb-0">
         <AppHeader :cart-count="cartCount" />
 
         <div class="flex-1">

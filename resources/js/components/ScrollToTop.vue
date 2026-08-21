@@ -37,7 +37,7 @@ onUnmounted(() => {
         <button 
             v-show="isVisible"
             @click="scrollToTop"
-            class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#A388A9] text-white shadow-lg hover:bg-[#8C6A5D] hover:scale-105 active:scale-95 transition-all flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-[#DAB6C4]/50"
+            class="fixed bottom-24 md:bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-[#A388A9] text-white shadow-lg hover:bg-[#8C6A5D] hover:scale-105 active:scale-95 transition-all flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-[#DAB6C4]/50"
             aria-label="Volver arriba"
         >
             <FontAwesomeIcon :icon="faArrowUp" class="text-lg" />
