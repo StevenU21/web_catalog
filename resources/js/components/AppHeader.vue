@@ -3,7 +3,8 @@ import {
     faUser, 
     faSpa,
     faBrush,
-    faSprayCanSparkles 
+    faSprayCanSparkles,
+    faStore
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Link } from '@inertiajs/vue3';
@@ -22,7 +23,7 @@ import CartDropdown from './CartDropdown.vue';
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 flex items-center justify-between">
             <!-- Brand Logo & Typographic Wordmark -->
             <Link href="/" class="flex items-center gap-2.5 sm:gap-3 hover:opacity-90 transition-opacity">
-                <img src="/img/logo.png" alt="Jolismar Store" class="h-9 sm:h-11 w-auto object-contain rounded-xs" />
+                <img src="/img/logo03.jpg" alt="Jolismar Store" class="h-9 w-9 sm:h-11 sm:w-11 object-cover rounded-full shadow-2xs" />
                 <span class="text-lg sm:text-2xl md:text-3xl font-bold text-[#8C6A5D] font-serif tracking-wide">
                     Jolismar Store
                 </span>
@@ -41,6 +42,10 @@ import CartDropdown from './CartDropdown.vue';
                 <Link :href="perfumesIndex.url()" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
                     <FontAwesomeIcon :icon="faSprayCanSparkles" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
                     <span>Perfumería</span>
+                </Link>
+                <Link href="/nosotros" class="text-[#2C2C2C] hover:text-[#8C6A5D] transition-colors inline-flex items-center gap-2 group">
+                    <FontAwesomeIcon :icon="faStore" class="text-xs text-[#A388A9] group-hover:text-[#8C6A5D] transition-colors" />
+                    <span>Nosotros</span>
                 </Link>
             </nav>
 

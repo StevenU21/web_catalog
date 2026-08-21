@@ -12,7 +12,7 @@ const currentYear = new Date().getFullYear();
             <!-- Brand & Tagline -->
             <div class="flex flex-col items-center md:items-start gap-2">
                 <div class="flex items-center gap-2.5">
-                    <img src="/img/logo.png" alt="Jolismar Store" class="h-8 sm:h-9 w-auto object-contain" />
+                    <img src="/img/logo03.jpg" alt="Jolismar Store" class="h-8 w-8 sm:h-9 sm:w-9 object-cover rounded-full shadow-2xs" />
                     <span class="font-serif text-[#8C6A5D] font-bold text-lg">Jolismar Store</span>
                 </div>
                 <span class="text-xs text-[#2C2C2C]/60">&copy; {{ currentYear }} Jolismar Store. Elegancia en cada gota.</span>

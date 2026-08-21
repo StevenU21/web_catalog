@@ -16,5 +16,6 @@ Route::get('/skincare', [SkincareController::class, 'index'])->name('skincare.in
 Route::get('/perfumeria', [PerfumesController::class, 'index'])->name('perfumes.index');
 Route::get('/catalogo', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/catalogo/{id}', [CatalogController::class, 'show'])->name('catalog.show');
+Route::inertia('/nosotros', 'About/Index')->name('about.index');
 
 Route::get('/search/ai', [AiSearchController::class, 'search'])->name('search.ai');
