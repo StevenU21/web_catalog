@@ -1,14 +1,21 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faWandMagicSparkles, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 defineProps<{
     show: boolean;
 }>();
+
+const isMounted = ref(false);
+onMounted(() => {
+    isMounted.value = true;
+});
 </script>
 
 <template>
-    <Transition
+    <Teleport to="body" v-if="isMounted">
+        <Transition
         enter-active-class="transition ease-out duration-300"
         enter-from-class="opacity-0 scale-95"
         enter-to-class="opacity-100 scale-100"
@@ -31,6 +38,7 @@ defineProps<{
             <p class="text-[#2C2C2C]/80 font-sans text-sm sm:text-base text-center max-w-sm">
                 Seleccionando los productos ideales para tu piel.
             </p>
-        </div>
-    </Transition>
+            </div>
+        </Transition>
+    </Teleport>
 </template>

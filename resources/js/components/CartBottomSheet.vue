@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faBagShopping, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,11 @@ defineProps<{
 }>();
 
 const isOpen = ref(false);
+const isMounted = ref(false);
+
+onMounted(() => {
+    isMounted.value = true;
+});
 
 // Mock data for design
 const mockCartItems = [
@@ -53,7 +58,7 @@ const closeBottomSheet = () => {
         </button>
 
         <!-- Teleport to body to escape header's backdrop-filter stacking context -->
-        <Teleport to="body">
+        <Teleport to="body" v-if="isMounted">
             <!-- Mobile Backdrop Overlay -->
             <transition
                 enter-active-class="transition-opacity ease-linear duration-300"
