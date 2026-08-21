@@ -1,28 +1,78 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { router } from '@inertiajs/vue3';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faTimes, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
-defineProps<{
+const props = defineProps<{
     isOpen: boolean;
+    filters?: {
+        brands?: string[];
+        skinTypes?: string[];
+        genders?: string[];
+        maxPrice?: number;
+    };
+    activeFilters?: {
+        brand?: string;
+        skinType?: string;
+        gender?: string;
+        maxPrice?: number;
+    };
 }>();
 
 const emit = defineEmits<{
     (e: 'close'): void;
 }>();
 
-// Mock filter state
-const activeBrand = ref<string>('');
-const activeSkinType = ref<string>('');
-const priceRange = ref<number>(2000);
+const currentFilters = ref({
+    brand: props.activeFilters?.brand || '',
+    skinType: props.activeFilters?.skinType || '',
+    gender: props.activeFilters?.gender || '',
+    maxPrice: props.activeFilters?.maxPrice || props.filters?.maxPrice || 2000,
+});
 
-const brands = ['The Ordinary', 'CeraVe', 'L\'Oréal', 'Maybelline', 'e.l.f.', 'NYX'];
-const skinTypes = ['Grasa', 'Seca', 'Mixta', 'Sensible'];
+const localPrice = ref(currentFilters.value.maxPrice);
+
+const applyFilters = () => {
+    const query: any = {};
+    if (currentFilters.value.brand) query.brand = currentFilters.value.brand;
+    if (currentFilters.value.skinType) query.skinType = currentFilters.value.skinType;
+    if (currentFilters.value.gender) query.gender = currentFilters.value.gender;
+    if (currentFilters.value.maxPrice && currentFilters.value.maxPrice < (props.filters?.maxPrice || 2000)) {
+        query.maxPrice = currentFilters.value.maxPrice;
+    }
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('sort')) {
+        query.sort = urlParams.get('sort');
+    }
+
+    router.get(window.location.pathname, query, {
+        preserveState: true,
+        preserveScroll: true,
+        replace: true,
+    });
+};
+
+watch(
+    () => [currentFilters.value.brand, currentFilters.value.skinType, currentFilters.value.gender, currentFilters.value.maxPrice],
+    () => {
+        applyFilters();
+    }
+);
+
+const onPriceChange = (event: Event) => {
+    const val = parseInt((event.target as HTMLInputElement).value);
+    currentFilters.value.maxPrice = val;
+};
 
 const clearFilters = () => {
-    activeBrand.value = '';
-    activeSkinType.value = '';
-    priceRange.value = 2000;
+    currentFilters.value.brand = '';
+    currentFilters.value.skinType = '';
+    currentFilters.value.gender = '';
+    currentFilters.value.maxPrice = props.filters?.maxPrice || 2000;
+    localPrice.value = currentFilters.value.maxPrice;
+    // applyFilters is automatically called by watch
 };
 </script>
 
@@ -50,17 +100,17 @@ const clearFilters = () => {
             </div>
         </div>
 
-        <div class="space-y-8">
+        <div class="space-y-8" v-if="filters">
             <!-- Brand Filter -->
-            <div>
+            <div v-if="filters.brands && filters.brands.length > 0">
                 <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Marca</h3>
                 <div class="space-y-2">
-                    <label v-for="brand in brands" :key="brand" class="flex items-center gap-2 cursor-pointer group">
+                    <label v-for="brand in filters.brands" :key="brand" class="flex items-center gap-2 cursor-pointer group">
                         <input 
                             type="radio" 
                             name="brand" 
                             :value="brand" 
-                            v-model="activeBrand"
+                            v-model="currentFilters.brand"
                             class="text-[#A388A9] focus:ring-[#A388A9] border-[#DAB6C4] bg-transparent cursor-pointer"
                         >
                         <span class="text-sm text-[#2C2C2C] group-hover:text-[#A388A9] transition-colors">{{ brand }}</span>
@@ -69,15 +119,15 @@ const clearFilters = () => {
             </div>
 
             <!-- Skin Type Filter -->
-            <div>
+            <div v-if="filters.skinTypes && filters.skinTypes.length > 0">
                 <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Tipo de Piel</h3>
                 <div class="space-y-2">
-                    <label v-for="type in skinTypes" :key="type" class="flex items-center gap-2 cursor-pointer group">
+                    <label v-for="type in filters.skinTypes" :key="type" class="flex items-center gap-2 cursor-pointer group">
                         <input 
                             type="radio" 
                             name="skinType" 
                             :value="type" 
-                            v-model="activeSkinType"
+                            v-model="currentFilters.skinType"
                             class="text-[#A388A9] focus:ring-[#A388A9] border-[#DAB6C4] bg-transparent cursor-pointer"
                         >
                         <span class="text-sm text-[#2C2C2C] group-hover:text-[#A388A9] transition-colors">{{ type }}</span>
@@ -85,21 +135,39 @@ const clearFilters = () => {
                 </div>
             </div>
 
+            <!-- Gender Filter -->
+            <div v-if="filters.genders && filters.genders.length > 0">
+                <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Para</h3>
+                <div class="space-y-2">
+                    <label v-for="gender in filters.genders" :key="gender" class="flex items-center gap-2 cursor-pointer group">
+                        <input 
+                            type="radio" 
+                            name="gender" 
+                            :value="gender" 
+                            v-model="currentFilters.gender"
+                            class="text-[#A388A9] focus:ring-[#A388A9] border-[#DAB6C4] bg-transparent cursor-pointer"
+                        >
+                        <span class="text-sm text-[#2C2C2C] group-hover:text-[#A388A9] transition-colors">{{ gender }}</span>
+                    </label>
+                </div>
+            </div>
+
             <!-- Price Filter -->
-            <div>
+            <div v-if="filters.maxPrice">
                 <h3 class="text-sm font-semibold text-[#8C6A5D] uppercase tracking-wider mb-3">Precio Máximo</h3>
                 <div class="space-y-4">
                     <input 
                         type="range" 
                         min="0" 
-                        max="2000" 
+                        :max="filters.maxPrice" 
                         step="50"
-                        v-model="priceRange"
+                        v-model="localPrice"
+                        @change="onPriceChange"
                         class="w-full accent-[#A388A9]"
                     >
                     <div class="flex justify-between text-sm text-[#2C2C2C]/80">
                         <span>C$ 0</span>
-                        <span class="font-medium text-[#A388A9]">C$ {{ priceRange }}</span>
+                        <span class="font-medium text-[#A388A9]">C$ {{ localPrice }}</span>
                     </div>
                 </div>
             </div>
@@ -111,7 +179,7 @@ const clearFilters = () => {
                     class="w-full md:hidden bg-[#A388A9] text-white py-3 rounded-xl font-medium shadow-xs hover:bg-[#8C6A5D] transition-colors min-h-[44px] cursor-pointer"
                     type="button"
                 >
-                    Aplicar Filtros
+                    Ver Productos
                 </button>
                 <button 
                     @click="clearFilters"

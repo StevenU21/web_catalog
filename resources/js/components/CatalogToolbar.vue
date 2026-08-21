@@ -4,6 +4,7 @@ import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 
 defineProps<{
     totalProducts: number;
+    activeSort?: string;
 }>();
 
 const emit = defineEmits<{
@@ -35,6 +36,7 @@ const emit = defineEmits<{
             <div class="relative flex items-center flex-1 md:flex-initial">
                 <FontAwesomeIcon :icon="faSort" class="text-[#A388A9] text-xs absolute left-3 pointer-events-none" />
                 <select 
+                    :value="activeSort || 'relevance'"
                     @change="emit('sortChange', ($event.target as HTMLSelectElement).value)"
                     class="appearance-none w-full md:w-auto pl-8 pr-8 py-2 border border-[#DAB6C4] rounded-lg text-xs sm:text-sm text-[#8C6A5D] bg-transparent focus:ring-2 focus:ring-[#A388A9] focus:border-[#A388A9] outline-none cursor-pointer font-medium"
                 >

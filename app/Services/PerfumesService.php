@@ -18,16 +18,16 @@ class PerfumesService
 
         return [
             // Perfumes Árabes
-            new ProductDTO(901, 'Lattafa - Asad Bourbon', 'Perfumería', 'C$ 1,450.00', $imgDark),
-            new ProductDTO(902, 'Lattafa - Khamrah Qahwa', 'Perfumería', 'C$ 1,550.00', $imgAmber),
-            new ProductDTO(903, 'Odyssey Mandarin Sky (100ml) - Armaf', 'Perfumería', 'C$ 1,350.00', $imgFresh),
-            new ProductDTO(904, 'Lattafa Eclaire', 'Perfumería', 'C$ 1,700.00', $imgAmber),
-            new ProductDTO(905, 'Lattafa Yara Pink', 'Perfumería', 'C$ 1,350.00', $imgPink),
-            new ProductDTO(906, 'Club de Nuit - Women (105ml) - Armaf', 'Perfumería', 'C$ 1,400.00', $imgDark),
-            new ProductDTO(907, 'Lattafa - Khamrah', 'Perfumería', 'C$ 1,600.00', $imgAmber),
-            new ProductDTO(908, 'Lattafa - Delilah', 'Perfumería', 'C$ 1,250.00', $imgPink),
-            new ProductDTO(909, '9 PM Rebel - Afnan', 'Perfumería', 'C$ 1,700.00', $imgDark),
-            new ProductDTO(910, 'Armaf Odyssey Aqua Men (100ml)', 'Perfumería', 'C$ 1,500.00', $imgFresh),
+            new ProductDTO(id: 901, name: 'Lattafa - Asad Bourbon', category: 'Perfumería', price: 'C$ 1,450.00', image: $imgDark, brand: 'Lattafa', gender: 'Hombre', priceNumeric: 1450),
+            new ProductDTO(id: 902, name: 'Lattafa - Khamrah Qahwa', category: 'Perfumería', price: 'C$ 1,550.00', image: $imgAmber, brand: 'Lattafa', gender: 'Unisex', priceNumeric: 1550),
+            new ProductDTO(id: 903, name: 'Odyssey Mandarin Sky (100ml) - Armaf', category: 'Perfumería', price: 'C$ 1,350.00', image: $imgFresh, brand: 'Armaf', gender: 'Hombre', priceNumeric: 1350),
+            new ProductDTO(id: 904, name: 'Lattafa Eclaire', category: 'Perfumería', price: 'C$ 1,700.00', image: $imgAmber, brand: 'Lattafa', gender: 'Unisex', priceNumeric: 1700),
+            new ProductDTO(id: 905, name: 'Lattafa Yara Pink', category: 'Perfumería', price: 'C$ 1,350.00', image: $imgPink, brand: 'Lattafa', gender: 'Mujer', priceNumeric: 1350),
+            new ProductDTO(id: 906, name: 'Club de Nuit - Women (105ml) - Armaf', category: 'Perfumería', price: 'C$ 1,400.00', image: $imgDark, brand: 'Armaf', gender: 'Mujer', priceNumeric: 1400),
+            new ProductDTO(id: 907, name: 'Lattafa - Khamrah', category: 'Perfumería', price: 'C$ 1,600.00', image: $imgAmber, brand: 'Lattafa', gender: 'Unisex', priceNumeric: 1600),
+            new ProductDTO(id: 908, name: 'Lattafa - Delilah', category: 'Perfumería', price: 'C$ 1,250.00', image: $imgPink, brand: 'Lattafa', gender: 'Mujer', priceNumeric: 1250),
+            new ProductDTO(id: 909, name: '9 PM Rebel - Afnan', category: 'Perfumería', price: 'C$ 1,700.00', image: $imgDark, brand: 'Afnan', gender: 'Hombre', priceNumeric: 1700),
+            new ProductDTO(id: 910, name: 'Armaf Odyssey Aqua Men (100ml)', category: 'Perfumería', price: 'C$ 1,500.00', image: $imgFresh, brand: 'Armaf', gender: 'Hombre', priceNumeric: 1500),
         ];
     }
 }

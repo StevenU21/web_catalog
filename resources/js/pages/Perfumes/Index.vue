@@ -1,6 +1,6 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { ref } from 'vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ProductGrid from '@/components/ProductGrid.vue';
 import CatalogToolbar from '@/components/CatalogToolbar.vue';
@@ -11,6 +11,8 @@ import { type Product } from '@/types';
 const props = defineProps<{
     categoryName: string;
     products: Product[];
+    filters?: Record<string, any>;
+    activeFilters?: Record<string, any>;
 }>();
 
 const cartCount = ref(0);
@@ -22,7 +24,15 @@ function handleAddToCart(product: Product) {
 }
 
 function handleSortChange(value: string) {
-    console.log('Sort changed to:', value);
+    const urlParams = new URLSearchParams(window.location.search);
+    const query: Record<string, any> = {};
+    urlParams.forEach((v, k) => { query[k] = v; });
+    query.sort = value;
+    router.get(window.location.pathname, query, {
+        preserveState: true,
+        preserveScroll: true,
+        replace: true,
+    });
 }
 </script>
 
@@ -42,6 +52,7 @@ function handleSortChange(value: string) {
 
             <CatalogToolbar 
                 :total-products="products.length"
+                :active-sort="activeFilters?.sort"
                 @toggle-filters="isFiltersOpen = true"
                 @sort-change="handleSortChange"
             />
@@ -50,6 +61,8 @@ function handleSortChange(value: string) {
             <div class="flex flex-col md:flex-row gap-8">
                 <CatalogFilters 
                     :is-open="isFiltersOpen"
+                    :filters="filters"
+                    :active-filters="activeFilters"
                     @close="isFiltersOpen = false"
                 />
 

@@ -11,6 +11,10 @@ class ProductDTO
         public readonly string $price,
         public readonly string $image,
         public readonly ?string $description = null,
+        public readonly ?string $brand = null,
+        public readonly ?string $skinType = null,
+        public readonly ?string $gender = null,
+        public readonly int $priceNumeric = 0,
     ) {}
 
     /**
@@ -25,6 +29,10 @@ class ProductDTO
             'price' => $this->price,
             'image' => $this->image,
             'description' => $this->description,
+            'brand' => $this->brand,
+            'skinType' => $this->skinType,
+            'gender' => $this->gender,
+            'priceNumeric' => $this->priceNumeric,
         ];
     }
 }
