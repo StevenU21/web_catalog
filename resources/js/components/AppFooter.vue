@@ -2,6 +2,7 @@
 import { faWhatsapp, faInstagram, faTiktok, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Link } from '@inertiajs/vue3';
 
 const currentYear = new Date().getFullYear();
 </script>
@@ -58,10 +59,15 @@ const currentYear = new Date().getFullYear();
                 </a>
             </div>
 
-            <!-- Location & Shipping -->
-            <div class="text-xs text-[#2C2C2C]/60 flex items-center gap-1.5">
-                <FontAwesomeIcon :icon="faLocationDot" class="text-[#8C6A5D]" />
-                <span>Estelí, Nicaragua &bull; Envíos a todo el país</span>
+            <!-- Links & Location -->
+            <div class="flex flex-col items-center md:items-end gap-2 text-xs text-[#2C2C2C]/60">
+                <Link href="/nosotros" class="text-sm font-medium hover:text-[#8C6A5D] transition-colors mb-1">
+                    Sobre Nosotros
+                </Link>
+                <div class="flex items-center gap-1.5">
+                    <FontAwesomeIcon :icon="faLocationDot" class="text-[#8C6A5D]" />
+                    <span>Estelí, Nicaragua &bull; Envíos a todo el país</span>
+                </div>
             </div>
         </div>
     </footer>
