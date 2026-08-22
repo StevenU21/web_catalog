@@ -110,7 +110,7 @@ const copyToClipboard = async (text: string) => {
                     <div>
                         <span
                             class="mb-1 block text-xs font-bold tracking-wider text-[#A388A9] uppercase"
-                            >Pasión por el Cuidado y la Belleza</span
+                            >Nuestra Historia</span
                         >
                         <h2
                             class="font-serif text-3xl font-bold text-[#8C6A5D] sm:text-4xl"
@@ -119,65 +119,51 @@ const copyToClipboard = async (text: string) => {
                         </h2>
                     </div>
 
-                    <div
-                        class="space-y-4 font-sans text-base leading-relaxed text-[#2C2C2C]/85 sm:text-lg"
-                    >
+                    <!-- Organic Story -->
+                    <div class="space-y-4 font-sans text-base leading-relaxed text-[#2C2C2C]/85 sm:text-lg">
                         <p>
-                            <strong class="text-[#8C6A5D]"
-                                >Jolismar Store</strong
-                            >
-                            nació en el año 2025 en la ciudad de Estelí con una
-                            misión clara y decidida: brindar acceso confiable,
-                            transparente e inmediato a productos originales de
-                            cosmética de alta gama, tratamientos dermatológicos
-                            de renombre y las más exclusivas fragancias árabes.
+                            <strong class="text-[#8C6A5D]">Jolismar Store</strong> nació en el año 2025 en la ciudad de Estelí con una misión clara: brindar acceso confiable e inmediato a cosmética de alta gama, tratamientos dermatológicos y exclusivas fragancias árabes.
                         </p>
+                        
                         <p>
-                            Fundada y liderada por
-                            <strong class="text-[#8C6A5D]"
-                                >Daysi Lisbeth Peralta Pastrana</strong
-                            >, nuestra tienda surge para resolver una de las
-                            mayores preocupaciones de los amantes del cuidado
-                            personal: la certeza de adquirir productos 100%
-                            auténticos que cuiden la salud de su piel y
-                            potencien su estilo con resultados comprobados.
+                            Fundada y liderada por <strong class="text-[#8C6A5D]">Daysi Lisbeth Peralta Pastrana</strong>, nuestra tienda surge para resolver la mayor preocupación al cuidar tu piel: tener la certeza absoluta de adquirir productos 100% auténticos.
                         </p>
-                        <p class="text-sm text-[#2C2C2C]/75 sm:text-base">
-                            En Jolismar Store no solo vendemos productos;
-                            brindamos una asesoría cercana para que elijas
-                            exactamente los activos adecuados para tu tipo de
-                            piel (Niacinamida, Retinol, Ácido Hialurónico,
-                            Ceramidas) y las notas olfativas que te definan.
+
+                        <p>
+                            Aquí no solo vendemos productos. Brindamos una asesoría humana y cercana para que entiendas qué activos (como la Niacinamida o el Retinol) necesita tu piel. Y para apoyarnos en esta misión, hemos incorporado un <strong>Asistente Inteligente</strong> que te acompaña 24/7 a descubrir tu rutina ideal.
                         </p>
                     </div>
 
                     <!-- Highlights row -->
-                    <div
-                        class="grid grid-cols-2 gap-3 pt-2 sm:gap-4"
-                    >
-                        <div
-                            class="rounded-xl border border-[#DAB6C4]/30 bg-white p-3.5 shadow-2xs"
-                        >
-                            <span
-                                class="block font-serif text-xl font-bold text-[#8C6A5D]"
-                                >100%</span
-                            >
-                            <span class="text-xs font-medium text-[#2C2C2C]/70"
-                                >Marcas Originales</span
-                            >
+                    <div class="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-3 sm:gap-4">
+                        <div class="flex flex-col items-center justify-center rounded-xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-3 text-center shadow-2xs">
+                            <span class="block font-serif text-xl font-bold text-[#8C6A5D]">100%</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#2C2C2C]/70">Auténtico</span>
                         </div>
-                        <div
-                            class="rounded-xl border border-[#DAB6C4]/30 bg-white p-3.5 shadow-2xs"
-                        >
-                            <span
-                                class="block font-serif text-xl font-bold text-[#8C6A5D]"
-                                >1 a 1</span
-                            >
-                            <span class="text-xs font-medium text-[#2C2C2C]/70"
-                                >Asesoría Dedicada</span
-                            >
+                        <div class="flex flex-col items-center justify-center rounded-xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-3 text-center shadow-2xs">
+                            <span class="block font-serif text-xl font-bold text-[#8C6A5D]">1 a 1</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#2C2C2C]/70">Asesoría</span>
+                        </div>
+                        <div class="col-span-2 flex flex-col items-center justify-center rounded-xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-3 text-center shadow-2xs sm:col-span-1">
+                            <span class="block font-serif text-xl font-bold text-[#8C6A5D]">24/7</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-[#2C2C2C]/70">Guía IA</span>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Brand Trust Banner -->
+            <section class="mb-16 overflow-hidden rounded-3xl border border-[#DAB6C4]/30 bg-white py-8 shadow-sm sm:mb-20">
+                <div class="mb-5 text-center">
+                    <span class="text-xs font-bold tracking-widest text-[#A388A9] uppercase">Marcas que cuidan de ti</span>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-8 px-6 opacity-60 grayscale sm:gap-16">
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">CeraVe</span>
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">The Ordinary</span>
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">L'Oréal Paris</span>
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">Pixi</span>
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">Lattafa</span>
+                    <span class="font-serif text-xl font-bold tracking-wide text-[#2C2C2C]">e.l.f.</span>
                 </div>
             </section>
 
@@ -207,158 +193,117 @@ const copyToClipboard = async (text: string) => {
                 >
                     <!-- Left: Contact Details Cards (5 cols) -->
                     <div
-                        class="flex flex-col justify-between space-y-6 lg:col-span-5"
+                        class="flex flex-col h-full justify-between gap-4 lg:col-span-5"
                     >
-                        <div class="space-y-4">
-                            <!-- Physical Address Card -->
+                        <!-- Physical Address Card -->
+                        <div
+                            class="flex flex-1 items-center gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-5 sm:p-6 shadow-2xs"
+                        >
                             <div
-                                class="flex items-start gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-4 sm:p-5"
+                                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
                             >
-                                <div
-                                    class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
-                                >
-                                    <FontAwesomeIcon
-                                        :icon="faLocationDot"
-                                        class="text-lg"
-                                    />
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h4
-                                        class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
-                                    >
-                                        Dirección Física
-                                    </h4>
-                                    <p
-                                        class="text-sm leading-snug font-medium text-[#2C2C2C]"
-                                    >
-                                        Estelí, Esquina de los bancos 1c y media
-                                        al oeste (En cerrajería Multiservicios),
-                                        Estelí, Nicaragua.
-                                    </p>
-                                </div>
+                                <FontAwesomeIcon
+                                    :icon="faLocationDot"
+                                    class="text-xl"
+                                />
                             </div>
-
-                            <!-- Email Card -->
-                            <div
-                                class="flex items-start gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-4 sm:p-5"
-                            >
-                                <div
-                                    class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
+                            <div class="min-w-0 flex-1">
+                                <h4
+                                    class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
                                 >
-                                    <FontAwesomeIcon
-                                        :icon="faEnvelope"
-                                        class="text-lg"
-                                    />
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h4
-                                        class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
-                                    >
-                                        Correo Electrónico
-                                    </h4>
-                                    <div
-                                        class="flex flex-wrap items-center gap-2"
-                                    >
-                                        <a
-                                            :href="`mailto:${contactEmail}`"
-                                            class="text-sm font-semibold break-all text-[#2C2C2C] transition-colors hover:text-[#8C6A5D]"
-                                        >
-                                            {{ contactEmail }}
-                                        </a>
-                                        <button
-                                            type="button"
-                                            @click="
-                                                copyToClipboard(contactEmail)
-                                            "
-                                            class="inline-flex cursor-pointer items-center gap-1 rounded-md border border-[#DAB6C4]/40 bg-white px-2.5 py-1 text-xs text-[#8C6A5D] shadow-2xs transition-all hover:bg-[#A388A9] hover:text-white"
-                                            :title="'Copiar correo'"
-                                        >
-                                            <FontAwesomeIcon
-                                                :icon="
-                                                    copied ? faCheck : faCopy
-                                                "
-                                                class="text-xs"
-                                            />
-                                            <span>{{
-                                                copied ? '¡Copiado!' : 'Copiar'
-                                            }}</span>
-                                        </button>
-                                    </div>
-                                    <p class="mt-1 text-xs text-[#2C2C2C]/60">
-                                        Consultas formales, pedidos y
-                                        colaboraciones.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- WhatsApp / Phone Card -->
-                            <div
-                                class="flex items-start gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-4 sm:p-5"
-                            >
-                                <div
-                                    class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
+                                    Dirección Física
+                                </h4>
+                                <p
+                                    class="text-sm leading-relaxed font-medium text-[#2C2C2C]"
                                 >
-                                    <FontAwesomeIcon
-                                        :icon="faWhatsapp"
-                                        class="text-xl text-emerald-600"
-                                    />
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h4
-                                        class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
-                                    >
-                                        WhatsApp & Pedidos
-                                    </h4>
-                                    <p
-                                        class="mb-1 text-sm font-semibold text-[#2C2C2C]"
-                                    >
-                                        {{ contactPhone }}
-                                    </p>
-                                    <a
-                                        :href="whatsappUrl"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 transition-colors hover:text-emerald-800"
-                                    >
-                                        <span>Chatear por WhatsApp</span>
-                                        <FontAwesomeIcon
-                                            :icon="faArrowUpRightFromSquare"
-                                            class="text-[10px]"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Hours / Appointment Card -->
-                            <div
-                                class="flex items-start gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-4 sm:p-5"
-                            >
-                                <div
-                                    class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
-                                >
-                                    <FontAwesomeIcon
-                                        :icon="faClock"
-                                        class="text-lg"
-                                    />
-                                </div>
-                                <div class="min-w-0 flex-1">
-                                    <h4
-                                        class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
-                                    >
-                                        Horario y Atención
-                                    </h4>
-                                    <p
-                                        class="text-sm leading-snug text-[#2C2C2C]"
-                                    >
-                                        <strong>Tienda física:</strong> Solo con
-                                        cita previa para garantizar atención
-                                        exclusiva.
-                                    </p>
-                                </div>
+                                    Estelí, Esquina de los bancos 1c y media
+                                    al oeste (En cerrajería Multiservicios),
+                                    Estelí, Nicaragua.
+                                </p>
                             </div>
                         </div>
 
+                        <!-- Email Card -->
+                        <div
+                            class="flex flex-1 items-center gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-5 sm:p-6 shadow-2xs"
+                        >
+                            <div
+                                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
+                            >
+                                <FontAwesomeIcon
+                                    :icon="faEnvelope"
+                                    class="text-xl"
+                                />
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4
+                                    class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
+                                >
+                                    Correo Electrónico
+                                </h4>
+                                <div
+                                    class="flex flex-wrap items-center gap-2"
+                                >
+                                    <a
+                                        :href="`mailto:${contactEmail}`"
+                                        class="text-sm font-semibold break-all text-[#2C2C2C] transition-colors hover:text-[#8C6A5D]"
+                                    >
+                                        {{ contactEmail }}
+                                    </a>
+                                    <button
+                                        type="button"
+                                        @click="
+                                            copyToClipboard(contactEmail)
+                                        "
+                                        class="inline-flex cursor-pointer items-center gap-1 rounded-md border border-[#DAB6C4]/40 bg-white px-2.5 py-1 text-xs text-[#8C6A5D] shadow-2xs transition-all active:scale-95 hover:bg-[#A388A9] hover:text-white"
+                                        :title="'Copiar correo'"
+                                    >
+                                        <FontAwesomeIcon
+                                            :icon="
+                                                copied ? faCheck : faCopy
+                                            "
+                                            class="text-xs transition-transform duration-300"
+                                            :class="copied ? 'scale-110' : ''"
+                                        />
+                                        <span>{{
+                                            copied ? '¡Copiado!' : 'Copiar'
+                                        }}</span>
+                                    </button>
+                                </div>
+                                <p class="mt-1 text-xs text-[#2C2C2C]/60">
+                                    Consultas formales, pedidos y
+                                    colaboraciones.
+                                </p>
+                            </div>
+                        </div>
 
+                        <!-- Hours / Appointment Card -->
+                        <div
+                            class="flex flex-1 items-center gap-4 rounded-2xl border border-[#DAB6C4]/30 bg-[#F7F5F8] p-5 sm:p-6 shadow-2xs"
+                        >
+                            <div
+                                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#8C6A5D] shadow-2xs"
+                            >
+                                <FontAwesomeIcon
+                                    :icon="faClock"
+                                    class="text-xl"
+                                />
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4
+                                    class="mb-1 text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
+                                >
+                                    Horario y Atención
+                                </h4>
+                                <p
+                                    class="text-sm leading-relaxed text-[#2C2C2C]"
+                                >
+                                    <strong>Tienda física:</strong> Solo con
+                                    cita previa para garantizar atención
+                                    exclusiva.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Right: Google Maps Frame (7 cols) -->
@@ -448,7 +393,7 @@ const copyToClipboard = async (text: string) => {
                     >
                         <Link
                             :href="catalogIndex.url()"
-                            class="inline-flex w-full transform items-center justify-center gap-2 rounded-xl bg-[#F7F5F8] px-8 py-3.5 font-sans text-base font-bold text-[#8C6A5D] shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-lg sm:w-auto"
+                            class="inline-flex w-full transform items-center justify-center gap-2 rounded-xl bg-[#F7F5F8]/90 px-8 py-3.5 font-sans text-base font-bold text-[#8C6A5D] shadow-md transition-all duration-300 active:scale-95 hover:-translate-y-0.5 hover:bg-white hover:shadow-lg sm:w-auto"
                         >
                             Explorar Catálogo
                         </Link>
@@ -456,7 +401,7 @@ const copyToClipboard = async (text: string) => {
                             :href="whatsappUrl"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex w-full transform items-center justify-center gap-2 rounded-xl bg-[#A388A9] px-8 py-3.5 font-sans text-base font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#927598] hover:shadow-lg sm:w-auto"
+                            class="inline-flex w-full transform items-center justify-center gap-2 rounded-xl bg-[#A388A9] px-8 py-3.5 font-sans text-base font-bold text-white shadow-md transition-all duration-300 active:scale-95 hover:-translate-y-0.5 hover:bg-[#927598] hover:shadow-lg sm:w-auto"
                         >
                             <FontAwesomeIcon
                                 :icon="faWhatsapp"
