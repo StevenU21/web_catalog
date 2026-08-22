@@ -60,6 +60,7 @@ class ProductCatalogService
                 'brand' => $product->brand,
                 'skinType' => $product->skinType,
                 'price' => $product->price,
+                'description' => $product->description,
             ];
         }, $allProducts);
 

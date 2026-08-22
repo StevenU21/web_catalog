@@ -30,7 +30,7 @@ const emit = defineEmits<{
         </div>
 
         <!-- Product Information & Actions -->
-        <div class="flex flex-col space-y-1 sm:space-y-2 px-0.5 sm:px-1">
+        <div class="flex flex-col space-y-1 sm:space-y-1.5 px-0.5 sm:px-1 flex-1">
             <div class="flex items-center justify-between gap-1">
                 <span class="font-sans font-semibold text-sm sm:text-base md:text-lg text-[#2C2C2C]">{{ product.price }}</span>
                 <button 
@@ -47,7 +47,7 @@ const emit = defineEmits<{
             <h3 class="text-sm sm:text-lg md:text-xl font-serif text-[#8C6A5D] group-hover:text-[#A388A9] transition-colors line-clamp-2 leading-snug">
                 {{ product.name }}
             </h3>
-            <p v-if="product.description" class="hidden sm:block text-xs sm:text-sm text-[#2C2C2C]/70 font-sans line-clamp-2 leading-relaxed pt-0.5">
+            <p v-if="product.description" class="text-[11px] sm:text-xs md:text-sm text-[#2C2C2C]/70 font-sans line-clamp-2 leading-relaxed pt-0.5">
                 {{ product.description }}
             </p>
         </div>
