@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import {
-    faFacebook,
-    faInstagram,
-    faTiktok,
-    faWhatsapp,
-} from '@fortawesome/free-brands-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import {
     faArrowUpRightFromSquare,
     faCheck,
     faClock,
     faCopy,
     faEnvelope,
-    faGem,
     faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -47,8 +41,20 @@ const copyToClipboard = async (text: string) => {
 
     <AppLayout>
         <main
-            class="mx-auto max-w-7xl px-4 pt-8 pb-20 sm:px-6 sm:pt-12 md:pb-24 lg:px-8"
+            class="mx-auto max-w-7xl px-4 pt-6 pb-20 sm:px-6 sm:pt-10 md:pb-24 lg:px-8"
         >
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1
+                    class="mb-2 font-serif text-3xl font-semibold text-[#8C6A5D] sm:text-4xl"
+                >
+                    Sobre Nosotros
+                </h1>
+                <p class="font-sans text-sm text-[#2C2C2C]/80 sm:text-base">
+                    Elegancia en cada gota. Conoce nuestra historia, visión y compromiso con la belleza y el cuidado personal auténtico.
+                </p>
+            </div>
+
             <!-- Story & Founder Presentation (Wide 2-column) -->
             <section
                 class="mb-16 grid grid-cols-1 items-center gap-8 sm:mb-20 lg:grid-cols-12 lg:gap-12"
@@ -121,11 +127,10 @@ const copyToClipboard = async (text: string) => {
                                 >Jolismar Store</strong
                             >
                             nació en el año 2025 en la ciudad de Estelí con una
-                            misión clara y decidida: brindar a clientes de toda
-                            Nicaragua acceso confiable, transparente e inmediato
-                            a productos originales de cosmética de alta gama,
-                            tratamientos dermatológicos de renombre y las más
-                            exclusivas fragancias árabes.
+                            misión clara y decidida: brindar acceso confiable,
+                            transparente e inmediato a productos originales de
+                            cosmética de alta gama, tratamientos dermatológicos
+                            de renombre y las más exclusivas fragancias árabes.
                         </p>
                         <p>
                             Fundada y liderada por
@@ -148,7 +153,7 @@ const copyToClipboard = async (text: string) => {
 
                     <!-- Highlights row -->
                     <div
-                        class="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-3 sm:gap-4"
+                        class="grid grid-cols-2 gap-3 pt-2 sm:gap-4"
                     >
                         <div
                             class="rounded-xl border border-[#DAB6C4]/30 bg-white p-3.5 shadow-2xs"
@@ -163,17 +168,6 @@ const copyToClipboard = async (text: string) => {
                         </div>
                         <div
                             class="rounded-xl border border-[#DAB6C4]/30 bg-white p-3.5 shadow-2xs"
-                        >
-                            <span
-                                class="block font-serif text-xl font-bold text-[#8C6A5D]"
-                                >Nacional</span
-                            >
-                            <span class="text-xs font-medium text-[#2C2C2C]/70"
-                                >Cobertura de Envío</span
-                            >
-                        </div>
-                        <div
-                            class="col-span-2 rounded-xl border border-[#DAB6C4]/30 bg-white p-3.5 shadow-2xs sm:col-span-1"
                         >
                             <span
                                 class="block font-serif text-xl font-bold text-[#8C6A5D]"
@@ -203,9 +197,8 @@ const copyToClipboard = async (text: string) => {
                         Ubicación y Canales de Atención
                     </h2>
                     <p class="text-sm text-[#2C2C2C]/75 sm:text-base">
-                        Estamos ubicados en Estelí y realizamos envíos a toda
-                        Nicaragua. Escríbenos directamente o visítanos con
-                        previa cita.
+                        Estamos ubicados en Estelí. Escríbenos directamente o
+                        visítanos con previa cita.
                     </p>
                 </div>
 
@@ -236,24 +229,12 @@ const copyToClipboard = async (text: string) => {
                                         Dirección Física
                                     </h4>
                                     <p
-                                        class="mb-2 text-sm leading-snug font-medium text-[#2C2C2C]"
+                                        class="text-sm leading-snug font-medium text-[#2C2C2C]"
                                     >
                                         Estelí, Esquina de los bancos 1c y media
                                         al oeste (En cerrajería Multiservicios),
                                         Estelí, Nicaragua.
                                     </p>
-                                    <a
-                                        :href="googleMapsUrl"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-[#A388A9] transition-colors hover:text-[#8C6A5D]"
-                                    >
-                                        <span>Abrir en Google Maps</span>
-                                        <FontAwesomeIcon
-                                            :icon="faArrowUpRightFromSquare"
-                                            class="text-[10px]"
-                                        />
-                                    </a>
                                 </div>
                             </div>
 
@@ -373,62 +354,11 @@ const copyToClipboard = async (text: string) => {
                                         cita previa para garantizar atención
                                         exclusiva.
                                     </p>
-                                    <p class="mt-1 text-xs text-[#2C2C2C]/70">
-                                        <strong
-                                            >Atención en línea & envíos:</strong
-                                        >
-                                        Abierto y activo todos los días a nivel
-                                        nacional.
-                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Social Media Channels Bar -->
-                        <div class="pt-2">
-                            <span
-                                class="mb-3 block text-xs font-bold tracking-wider text-[#8C6A5D] uppercase"
-                                >Síguenos en Redes Sociales</span
-                            >
-                            <div class="flex items-center gap-3">
-                                <a
-                                    href="https://www.instagram.com/jolismar_store/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Instagram"
-                                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DAB6C4]/40 bg-[#F7F5F8] text-[#8C6A5D] shadow-2xs transition-all hover:bg-[#A388A9] hover:text-white"
-                                >
-                                    <FontAwesomeIcon
-                                        :icon="faInstagram"
-                                        class="text-lg"
-                                    />
-                                </a>
-                                <a
-                                    href="https://www.tiktok.com/@jolismar_store"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="TikTok"
-                                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DAB6C4]/40 bg-[#F7F5F8] text-[#8C6A5D] shadow-2xs transition-all hover:bg-[#A388A9] hover:text-white"
-                                >
-                                    <FontAwesomeIcon
-                                        :icon="faTiktok"
-                                        class="text-lg"
-                                    />
-                                </a>
-                                <a
-                                    href="https://www.facebook.com/JolismarStore/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Facebook"
-                                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#DAB6C4]/40 bg-[#F7F5F8] text-[#8C6A5D] shadow-2xs transition-all hover:bg-[#A388A9] hover:text-white"
-                                >
-                                    <FontAwesomeIcon
-                                        :icon="faFacebook"
-                                        class="text-lg"
-                                    />
-                                </a>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Right: Google Maps Frame (7 cols) -->
