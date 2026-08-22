@@ -72,15 +72,15 @@ function handleAddToCart(product: Product) {
                     <div class="mb-6 sm:mb-8">
                         <!-- Badge -->
                         <div class="inline-flex items-center space-x-2 px-3 sm:px-4 py-1 rounded-full bg-[#F3EBED] text-[#8C6A5D]/90 text-[10px] sm:text-xs font-medium tracking-wider uppercase mb-4 sm:mb-6">
-                            <span>Catalogo Web Inteligente</span>
+                            <span>Catálogo Web Inteligente</span>
                         </div>
 
                         <h1 class="text-4xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] text-[#8C6A5D] font-serif font-semibold mb-4 sm:mb-6 leading-tight max-w-xl">
-                            Tienda en Linea de cosmética y cuidado personal de alta fidelidad
+                            Cosmética, skincare y perfumería exclusiva para realzar tu belleza
                         </h1>
                         
                         <p class="text-base sm:text-lg text-[#2C2C2C]/80 max-w-lg font-sans leading-relaxed">
-                            Eleva tu rutina diaria con productos rigurosamente seleccionados para la vitalidad de tu piel.
+                            Descubre fórmulas auténticas y fragancias de autor cuidadosamente seleccionadas para el cuidado de tu piel.
                         </p>
                     </div>
 
@@ -108,8 +108,10 @@ function handleAddToCart(product: Product) {
             <div class="mt-12 sm:mt-16 md:mt-20 w-full">
                 <ProductGrid 
                     :products="featuredProducts" 
-                    title="Colección Premium" 
+                    title="Productos Destacados" 
+                    description="Una selección exclusiva de nuestros productos más valorados en skincare, maquillaje y fragancias."
                     view-all-href="/catalogo"
+                    view-all-label="Ver Catálogo Completo"
                     @add-to-cart="handleAddToCart" 
                 />
             </div>

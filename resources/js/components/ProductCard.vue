@@ -2,6 +2,7 @@
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import { show as catalogShow } from '@/routes/catalog';
 import type { Product } from '@/types';
 
@@ -12,17 +13,32 @@ defineProps<{
 const emit = defineEmits<{
     (e: 'addToCart', product: Product): void;
 }>();
+
+const isImageLoaded = ref(false);
 </script>
 
 <template>
     <Link :href="catalogShow.url({ id: product.id })" class="group cursor-pointer flex flex-col h-full">
         <!-- Product Image Surface -->
         <div class="relative w-full aspect-[4/5] bg-white rounded-sm mb-2.5 sm:mb-4 overflow-hidden shadow-xs transition-transform duration-500 group-hover:-translate-y-1 group-hover:shadow-md">
+            <!-- Skeleton Loader -->
+            <div 
+                v-if="!isImageLoaded" 
+                class="absolute inset-0 bg-[#F7F5F8] animate-pulse flex items-center justify-center z-0"
+            >
+                <div class="w-12 h-12 rounded-full bg-[#DAB6C4]/20"></div>
+            </div>
+
             <img 
                 :src="product.image" 
                 :alt="product.name" 
                 loading="lazy"
-                class="object-cover w-full h-full mix-blend-multiply opacity-95 group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                @load="isImageLoaded = true"
+                @error="isImageLoaded = true"
+                :class="[
+                    'object-cover w-full h-full mix-blend-multiply transition-all duration-700 ease-in-out relative z-10',
+                    isImageLoaded ? 'opacity-95 group-hover:scale-105' : 'opacity-0 scale-95'
+                ]"
             >
             <div class="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 bg-[#DAB6C4] text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-full uppercase tracking-wider shadow-xs">
                 {{ product.category }}

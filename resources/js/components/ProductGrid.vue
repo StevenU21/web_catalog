@@ -11,13 +11,17 @@ const props = withDefaults(
     defineProps<{
         products: Product[];
         title?: string;
+        description?: string;
         viewAllHref?: string;
+        viewAllLabel?: string;
         hideViewAll?: boolean;
         itemsPerPage?: number;
     }>(),
     {
         title: undefined,
+        description: undefined,
         viewAllHref: '#',
+        viewAllLabel: 'Ver Todo',
         hideViewAll: false,
         itemsPerPage: 12,
     }
@@ -94,16 +98,21 @@ return 0;
 <template>
     <section class="w-full text-left">
         <!-- Section Header (Only shown when title is provided) -->
-        <div v-if="title" class="flex items-center justify-between mb-6 sm:mb-10 border-b border-[#DAB6C4]/30 pb-3 sm:pb-4">
-            <h2 class="text-xl sm:text-2xl md:text-3xl text-[#8C6A5D] font-serif font-semibold">
-                {{ title }}
-            </h2>
+        <div v-if="title" class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4 mb-6 sm:mb-10 border-b border-[#DAB6C4]/30 pb-3 sm:pb-4">
+            <div>
+                <h2 class="text-xl sm:text-2xl md:text-3xl text-[#8C6A5D] font-serif font-semibold">
+                    {{ title }}
+                </h2>
+                <p v-if="description" class="text-[#2C2C2C]/80 text-xs sm:text-sm font-sans mt-1">
+                    {{ description }}
+                </p>
+            </div>
             <Link 
                 v-if="viewAllHref && !hideViewAll" 
                 :href="viewAllHref" 
-                class="text-xs sm:text-sm font-medium text-[#A388A9] hover:text-[#8C6A5D] transition-colors flex items-center gap-1.5 sm:gap-2 group"
+                class="text-xs sm:text-sm font-medium text-[#A388A9] hover:text-[#8C6A5D] transition-colors flex items-center gap-1.5 sm:gap-2 group self-start sm:self-auto shrink-0"
             >
-                <span>Ver Todo</span>
+                <span>{{ viewAllLabel }}</span>
                 <FontAwesomeIcon :icon="faArrowRight" class="text-xs transition-transform group-hover:translate-x-1" />
             </Link>
         </div>

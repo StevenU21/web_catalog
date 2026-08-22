@@ -48,8 +48,8 @@ function handleSortChange(value: string) {
                 <h1 class="text-3xl sm:text-4xl text-[#8C6A5D] font-serif font-semibold mb-2">
                     {{ categoryName }}
                 </h1>
-                <p class="text-[#2C2C2C]/80 text-sm sm:text-base font-sans">
-                    Explora nuestra selección de {{ categoryName.toLowerCase() }} de alta calidad.
+                <p class="text-[#2C2C2C]/80 text-sm sm:text-base font-sans max-w-2xl">
+                    Exclusiva selección de perfumería árabe y fragancias de autor con notas cautivadoras y fijación excepcional de larga duración.
                 </p>
             </div>
 
